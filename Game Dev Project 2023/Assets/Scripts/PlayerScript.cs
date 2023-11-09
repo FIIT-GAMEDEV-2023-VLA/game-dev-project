@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,16 @@ public class PlayerScript : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
+        /* TODO: Decide if we want to have jumping power based on how long you hold the jump button
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.x * 0.5f);
         }
+        */
 
         Flip();
+
+        SetRunning();
     }
 
     private void FixedUpdate()
@@ -43,7 +48,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
 
     private void Flip()
@@ -54,6 +59,15 @@ public class PlayerScript : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+        }
+    }
+
+    private void SetRunning(){
+        if (horizontal > 0f || horizontal < 0f) {
+            anim.SetBool("running", true);
+        }
+        else {
+            anim.SetBool("running", false);
         }
     }
 }
