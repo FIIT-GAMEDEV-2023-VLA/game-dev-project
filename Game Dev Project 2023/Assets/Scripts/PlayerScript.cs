@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     private float horizontal;
-    public float speed = 5f;
+    public float moveSpeed = 5f;
     public float jumpingPower = 12f;
-    private bool isFacingRight = true;
 
+    //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
+    [SerializeField] private SpriteRenderer spriteRend;
+
+    private enum AnimationState { idle, running, jumping, falling};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +32,12 @@ public class PlayerScript : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
-
-        /* TODO: Decide if we want to have jumping power based on how long you hold the jump button
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.x * 0.5f);
-        }
-        */
-
-        Flip();
-
-        SetRunning();
+        UpdateAnimations();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
     }
 
     private bool isGrounded()
@@ -51,23 +45,29 @@ public class PlayerScript : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
 
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }
+    private void UpdateAnimations(){
 
-    private void SetRunning(){
-        if (horizontal > 0f || horizontal < 0f) {
-            anim.SetBool("running", true);
+        AnimationState animState;
+
+        if (horizontal > 0f) {
+            animState = AnimationState.running;
+            spriteRend.flipX = false;
+        }
+        else if (horizontal < 0f) {
+            animState = AnimationState.running;
+            spriteRend.flipX = true;
         }
         else {
-            anim.SetBool("running", false);
+            animState = AnimationState.idle;
         }
+
+        if (rb.velocity.y > .05f) {
+            animState = AnimationState.jumping;
+        }
+        else if (rb.velocity.y < -.05f) {
+            animState = AnimationState.falling;
+        }
+
+        anim.SetInteger("animState", (int)animState);
     }
 }
