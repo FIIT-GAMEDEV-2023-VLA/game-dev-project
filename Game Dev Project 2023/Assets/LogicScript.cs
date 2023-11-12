@@ -25,7 +25,7 @@ public class LogicScript : MonoBehaviour
     // neskôr v player script budeme overovať (pri kolizii), či má postava ešte životy, a keď stratí 3, tak sa z daného scriptu zavolá game over screen
     // aj player life status bude až v player scripte (status alive = true na false sa zmení iba ak bude mať nula životov)
     
-    void Update()  // UI (hearts)
+    void Update()  // UI (hearts) and torch count
     {
         if (playerHealth>numOfHeartContainers) { playerHealth=numOfHeartContainers; } // lebo health nemoze byt viac ako mame srdiecok na obrazovke
         for (int i = 0; i < hearts.Length; i++)  // how many hearts will be visible (total health)
@@ -34,6 +34,19 @@ public class LogicScript : MonoBehaviour
             if (i<numOfHeartContainers) { hearts[i].enabled = true; } else { hearts[i].enabled = false; }
         }
 
+        torchCountText.text = "Torches: " + playerTorchCounter.ToString();
+
+    }
+
+    public void addTorch(int torchesToAdd)
+    {
+        playerTorchCounter += torchesToAdd;
+        //torchCountText.text = "Torches: " + playerTorchCounter.ToString();
+    }
+    public void removeTorch(int torchesToRemove)
+    {
+        playerTorchCounter -= torchesToRemove;
+        //torchCountText.text = "Torches: " + playerTorchCounter.ToString();
     }
 
     public void addLife(int lifeToAdd)  // if healing, then call this
