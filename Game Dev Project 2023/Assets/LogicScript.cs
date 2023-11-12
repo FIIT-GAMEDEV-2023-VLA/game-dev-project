@@ -25,10 +25,12 @@ public class LogicScript : MonoBehaviour
     // neskôr v player script budeme overovať (pri kolizii), či má postava ešte životy, a keď stratí 3, tak sa z daného scriptu zavolá game over screen
     // aj player life status bude až v player scripte (status alive = true na false sa zmení iba ak bude mať nula životov)
     
-    void Update()
+    void Update()  // UI (hearts)
     {
+        if (playerHealth>numOfHeartContainers) { playerHealth=numOfHeartContainers; } // lebo health nemoze byt viac ako mame srdiecok na obrazovke
         for (int i = 0; i < hearts.Length; i++)  // how many hearts will be visible (total health)
         {
+            if ((i<playerHealth)) { hearts[i].sprite = Heart; } else { hearts[i].sprite = EmptyHeart; }
             if (i<numOfHeartContainers) { hearts[i].enabled = true; } else { hearts[i].enabled = false; }
         }
 
@@ -36,30 +38,19 @@ public class LogicScript : MonoBehaviour
 
     public void addLife(int lifeToAdd)  // if healing, then call this
     {
-
         playerHealth += lifeToAdd;
-
-        // doimplementujem UI pak ešte tu:
-
     }
 
     public void loseLife(int lifeToLose)  // if :cc ouch then call this function
     {
-
         playerHealth -= lifeToLose;
-
-        // doimplementujem UI pak ešte tu:
-
-        
         // toto až v player scripte, podmienka (v prípade že stratil 3 životy zavolá sa game over screen):
         // gameOverScreen.SetActive(true);
-
     }
 
     public void restartGame()  // ešte spravím
     {
         //gameOverScreen.SetActive(false);
-
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // zavolám konkrétnu scénu
     }
