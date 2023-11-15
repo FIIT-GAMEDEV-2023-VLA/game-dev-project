@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/ArisuUIinGameScene.unity
+    guid: 344341bd5350faf49930be388ea40042
+  - enabled: 1
     path: Assets/Scenes/DanaScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
