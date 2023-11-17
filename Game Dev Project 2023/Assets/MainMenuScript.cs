@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
 
-    public Text buttonNGText; // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
+    public Text buttonNewGameText; // I want to change color of text in button when selected/hovered (to obtain responsiveness)
     
-    //public Color colorClicked;
     public ButtonBehaviorScript buttonBehavior;
+
+    public DelayScript delay;
     
     
     void Start()
     {
         buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();
+        
+        delay = GameObject.FindGameObjectWithTag("DelayManager").GetComponent<DelayScript>();
     }
     void Update()
     {
@@ -24,14 +27,20 @@ public class MainMenuScript : MonoBehaviour
 
     public void NewGame()
     {
-        buttonNGText = buttonBehavior.ChangeOfColorClickedButtonText(buttonNGText);
+        buttonNewGameText = buttonBehavior.ChangeOfColorClickedButtonText(buttonNewGameText);
+
+        StartCoroutine (delay.Delay3());
+        //delay.Delay3();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-        buttonNGText = buttonBehavior.ChangeOfColorUnclickedButtonText(buttonNGText);
+        buttonNewGameText = buttonBehavior.ChangeOfColorUnclickedButtonText(buttonNewGameText);
     }
-
-
-
+    
+    public void ContinueGame(){}
+    
+    public void SetSettings(){}
+    
+    public void QuitGame(){}
 
 }

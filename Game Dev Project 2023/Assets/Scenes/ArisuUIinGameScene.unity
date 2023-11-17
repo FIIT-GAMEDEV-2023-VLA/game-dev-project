@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255bdb204304c10499228cdd81934810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonNGText: {fileID: 0}
+  buttonNewGameText: {fileID: 0}
   buttonBehavior: {fileID: 0}
 --- !u!114 &156028028
 MonoBehaviour:
@@ -406,6 +406,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &277555151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277555153}
+  - component: {fileID: 277555152}
+  m_Layer: 0
+  m_Name: Delay Manager
+  m_TagString: DelayManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &277555152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277555151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa17187ee54f8d44b996f305e6b1e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &277555153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277555151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 708.7389, y: 343.20325, z: -0.070372075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &303948851 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6665842538664046262, guid: 63fda0578f6372e4a99400ccb333452f, type: 3}
@@ -649,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255bdb204304c10499228cdd81934810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonNGText: {fileID: 0}
+  buttonNewGameText: {fileID: 0}
   buttonBehavior: {fileID: 0}
 --- !u!114 &456171584
 MonoBehaviour:
@@ -1034,8 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255bdb204304c10499228cdd81934810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonNGText: {fileID: 1791292837}
-  buttonBehavior: {fileID: 0}
+  buttonNewGameText: {fileID: 1791292837}
+  buttonBehavior: {fileID: 1088824386}
 --- !u!114 &879417346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,7 +2114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255bdb204304c10499228cdd81934810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonNGText: {fileID: 0}
+  buttonNewGameText: {fileID: 0}
   buttonBehavior: {fileID: 0}
 --- !u!114 &2044851210
 MonoBehaviour:
@@ -2353,6 +2397,7 @@ SceneRoots:
   - {fileID: 2038161593}
   - {fileID: 1206568707}
   - {fileID: 1088824385}
+  - {fileID: 277555153}
   - {fileID: 6341634357340868043}
   - {fileID: 738140591}
   - {fileID: 44054093}

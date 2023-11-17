@@ -10,6 +10,7 @@ public class ButtonBehaviorScript : MonoBehaviour
     public Color colorUnclicked;
     public Color colorHovered;
     public Color colorSelected;
+    
     public Text buttonText;
     
     public Text ChangeOfColorClickedButtonText(Text actualButtonText)
