@@ -8,31 +8,30 @@ public class MainMenuScript : MonoBehaviour
 {
 
     public Text buttonNGText; // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
-    //public string RGBAColor;
-    public Color colorClicked;
     
+    //public Color colorClicked;
+    public ButtonBehaviorScript buttonBehavior;
+    
+    
+    void Start()
+    {
+        buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();
+    }
     void Update()
     {
-        
-        
+        // tu budem ešte dajaké veci riešiť (hovernutie šípkou zmení farbu text a tak)
     }
-
 
     public void NewGame()
     {
-        ChangeColor(colorClicked);
-        
+        buttonNGText = buttonBehavior.ChangeOfColorClickedButtonText(buttonNGText);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        buttonNGText = buttonBehavior.ChangeOfColorUnclickedButtonText(buttonNGText);
     }
 
 
 
-
-    public void ChangeColor(Color color)
-    {
-        
-        buttonNGText.color = color;
-
-    }
 
 }

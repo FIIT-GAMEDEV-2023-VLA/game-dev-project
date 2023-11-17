@@ -5,20 +5,41 @@ using UnityEngine.UI;
 
 public class ButtonBehaviorScript : MonoBehaviour
 {
-    public Text buttonNGText; // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
+    //public Text buttonText; // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
     public Color colorClicked;
+    public Color colorUnclicked;
+    public Color colorHovered;
+    public Color colorSelected;
+    public Text buttonText;
     
-    public void ColorClickedButton()
+    public Text ChangeOfColorClickedButtonText(Text actualButtonText)
     {
-        
-        
-    }
-    
-    public void ChangeColor(Color color)
-    {
-        
-        buttonNGText.color = color;
+        buttonText = actualButtonText;
+        buttonText.color = colorClicked;
+        return buttonText;
 
     }
+    
+    public Text ChangeOfColorUnclickedButtonText(Text actualButtonText)
+    {
+        buttonText = actualButtonText;
+        buttonText.color = colorUnclicked;
+        return buttonText;
+    }
+    
+    public Text ChangeOfColorHoveredButtonText(Text actualButtonText)
+    {
+        buttonText = actualButtonText;
+        buttonText.color = colorClicked;
+        return buttonText;
+    }
+    
+    public Text ChangeOfColorSelectedButtonText(Text actualButtonText)
+    {
+        buttonText = actualButtonText;
+        buttonText.color = colorClicked;
+        return buttonText;
+    }
+    
 
 }
