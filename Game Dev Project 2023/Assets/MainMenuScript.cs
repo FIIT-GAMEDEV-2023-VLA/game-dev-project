@@ -21,6 +21,8 @@ public class MainMenuScript : MonoBehaviour
     void Update()
     {
         // tu budem ešte dajaké veci riešiť (hovernutie šípkou zmení farbu text a tak)
+        
+        
     }
 
     public void NewGame()
