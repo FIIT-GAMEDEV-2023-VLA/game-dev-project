@@ -11,14 +11,12 @@ public class MainMenuScript : MonoBehaviour
     
     public ButtonBehaviorScript buttonBehavior;
 
-    public DelayScript delay;
-    
+    public float delayBetweenChangedScene;
     
     void Start()
     {
         buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();
         
-        delay = GameObject.FindGameObjectWithTag("DelayManager").GetComponent<DelayScript>();
     }
     void Update()
     {
@@ -28,13 +26,8 @@ public class MainMenuScript : MonoBehaviour
     public void NewGame()
     {
         buttonNewGameText = buttonBehavior.ChangeOfColorClickedButtonText(buttonNewGameText);
-
-        StartCoroutine (delay.Delay3());
-        //delay.Delay3();
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-        buttonNewGameText = buttonBehavior.ChangeOfColorUnclickedButtonText(buttonNewGameText);
+        
+        Invoke("LoadNewGameScene",delayBetweenChangedScene);
     }
     
     public void ContinueGame(){}
@@ -42,5 +35,13 @@ public class MainMenuScript : MonoBehaviour
     public void SetSettings(){}
     
     public void QuitGame(){}
+
+
+
+    public void LoadNewGameScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        buttonNewGameText = buttonBehavior.ChangeOfColorSelectedButtonText(buttonNewGameText);
+    }
 
 }
