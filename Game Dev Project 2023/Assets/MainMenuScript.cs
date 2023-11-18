@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuScript : MonoBehaviour
+    //, IPointerEnterHandler, IPointerExitHandler
 {
 
     public Text buttonNewGameText; // I want to change color of text in button when selected/hovered (to obtain responsiveness)
-    public Text buttonContinueText; 
-    public Text buttonSettingsText; 
-    public Text buttonQuitText; 
-    public Button buttonNewGame;
-    public Button buttonContinue;
-    public Button buttonSettings;
-    public Button buttonQuit;
+    //public Text buttonContinueText; 
+    //public Text buttonSettingsText; 
+    //public Text buttonQuitText; 
+    //public Button buttonNewGame;
+    //public Button buttonContinue;
+    //public Button buttonSettings;
+    //public Button buttonQuit;
     
     
     public ButtonBehaviorScript buttonBehavior;
@@ -27,8 +28,8 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private bool hovered = false;
     //private bool updateFlag = false;
 
-    public Button[] buttonsInMenu;
-    public Text[] textsInMenu;
+    [SerializeField] public Button[] buttonsInMenu;
+    [SerializeField] public Text[] textsInMenu;
 
     //private int hoveredOnButton = 0;
     public Color colorBeforeHover;
@@ -39,15 +40,25 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()
     {
         buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();
-
         
-        Debug.Log(buttonNewGameText+"ng tlacitko     45555");
+        buttonsInMenu = new Button[4];
+        
+        GameObject buttonObject = GameObject.Find("ButtonNG");
+        buttonsInMenu[0] = buttonObject.GetComponent<Button>();
+        buttonObject = GameObject.Find("ButtonContinue");
+        buttonsInMenu[1] = buttonObject.GetComponent<Button>();
+        buttonObject = GameObject.Find("ButtonSettings");
+        buttonsInMenu[2] = buttonObject.GetComponent<Button>();
+        buttonObject = GameObject.Find("ButtonQuit");
+        buttonsInMenu[3] = buttonObject.GetComponent<Button>();
+        
+        GameObject TextObject = GameObject.Find("ButtonNG");
+        buttonsInMenu[0] = TextObject.GetComponent<Text>();
+        
+        //buttonsInMenu[1] = buttonContinue; buttonsInMenu[2] = buttonSettings; buttonsInMenu[3] = buttonQuit;
+        //textsInMenu[0] = buttonNewGameText; textsInMenu[1] = buttonContinueText; textsInMenu[2] = buttonSettingsText; textsInMenu[3] = buttonQuitText; 
         
         
-        buttonsInMenu[0] = buttonNewGame; buttonsInMenu[1] = buttonContinue; buttonsInMenu[2] = buttonSettings; buttonsInMenu[3] = buttonQuit;
-        textsInMenu[0] = buttonNewGameText; textsInMenu[1] = buttonContinueText; textsInMenu[2] = buttonSettingsText; textsInMenu[3] = buttonQuitText; 
-            
-        Debug.Log(buttonsInMenu+"hah");
 
     }
 
