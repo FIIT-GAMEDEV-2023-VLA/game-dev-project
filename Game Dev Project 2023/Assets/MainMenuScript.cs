@@ -35,6 +35,11 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Text hoveredText;
     
     
+    
+    public Text selectedText;
+    private int selectedIndex = 0;
+    private int previousIndex = 0;
+    
 
     void Start()
     {
@@ -61,27 +66,37 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         textObject = GameObject.Find("TextQuit");
         textsInMenu[3] = textObject.GetComponent<Text>();
 
+
+        selectedText = textsInMenu[0];
+
     }
 
     void Update() // here I will solve some hovering on buttont (because I have invisible buttons and I want to have responsive text)
     {
-
-        /*
-        if (updateFlag == true)
+        
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (hovered == true)
-            {
-                textsInMenu[hoveredOnButton] = buttonBehavior.ChangeOfColorHoveredButtonText(textsInMenu[hoveredOnButton]);
-            }
-            else
-            {
-                textsInMenu[hoveredOnButton].color = colorBeforeHover;
-                
-            }
+            previousIndex = selectedIndex;
+            selectedIndex = selectedIndex - 1;
+            if (selectedIndex == -1) { selectedIndex = 3; }
+            
+            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);
+            textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
 
-            updateFlag = false;
         }
-        */
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            previousIndex = selectedIndex;
+            selectedIndex = selectedIndex + 1;
+            if (selectedIndex == 4) { selectedIndex = 0; }
+            
+            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);
+            textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
+            
+        }
+        
     }
 
     public void NewGame()
@@ -143,44 +158,6 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             }
         }
     }
-
-    
-    /*
-    public void ButtonOnHover()
-    {
-        hovered = true;
-        updateFlag = true;
-
-        Vector2 mousePosition = Input.mousePosition;
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit))
-        {
-            GameObject hoveredObject = hit.collider.gameObject;
-
-            // Kontrola, či je objekt tlačidlo (Button)
-            Button hoveredButton = hoveredObject.GetComponent<Button>();
-
-            if (hoveredButton != null && buttonsInMenu.Contains(hoveredButton))
-            {
-                // Aktuálne hovernuté tlačidlo
-                Debug.Log("Hovernuté tlačidlo: " + hoveredButton.name);
-            }
-    }
-
-
-        //hoveredOnButton =
-        //colorBeforeHover =
-        
-    }
-    
-    public void ButtonOffHover()
-    {
-        hovered = false;
-        updateFlag = true;
-    }
-    */
     
 }
         
