@@ -27,8 +27,8 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     private bool hovered = false;
 
-    [SerializeField] public Button[] buttonsInMenu;
-    [SerializeField] public Text[] textsInMenu;
+    [SerializeField] Button[] buttonsInMenu;
+    [SerializeField] Text[] textsInMenu;
 
     //private int hoveredOnButton = 0;
     public Color colorBeforeHover;
