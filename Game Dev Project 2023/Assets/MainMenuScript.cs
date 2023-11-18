@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MainMenuScript : MonoBehaviour
+public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //, IPointerEnterHandler, IPointerExitHandler
 {
 
@@ -26,7 +26,6 @@ public class MainMenuScript : MonoBehaviour
     
     
     private bool hovered = false;
-    //private bool updateFlag = false;
 
     [SerializeField] public Button[] buttonsInMenu;
     [SerializeField] public Text[] textsInMenu;
@@ -39,9 +38,10 @@ public class MainMenuScript : MonoBehaviour
 
     void Start()
     {
-        buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();
+        buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();  // load of buttonBehavior script
         
-        buttonsInMenu = new Button[4];
+        buttonsInMenu = new Button[4];  // I need to load some texts and buttons (editor in unity will not solve this for me)
+        textsInMenu = new Text[4];
         
         GameObject buttonObject = GameObject.Find("ButtonNG");
         buttonsInMenu[0] = buttonObject.GetComponent<Button>();
@@ -52,13 +52,14 @@ public class MainMenuScript : MonoBehaviour
         buttonObject = GameObject.Find("ButtonQuit");
         buttonsInMenu[3] = buttonObject.GetComponent<Button>();
         
-        GameObject TextObject = GameObject.Find("ButtonNG");
-        buttonsInMenu[0] = TextObject.GetComponent<Text>();
-        
-        //buttonsInMenu[1] = buttonContinue; buttonsInMenu[2] = buttonSettings; buttonsInMenu[3] = buttonQuit;
-        //textsInMenu[0] = buttonNewGameText; textsInMenu[1] = buttonContinueText; textsInMenu[2] = buttonSettingsText; textsInMenu[3] = buttonQuitText; 
-        
-        
+        GameObject textObject = GameObject.Find("TextNG");
+        textsInMenu[0] = textObject.GetComponent<Text>();
+        textObject = GameObject.Find("TextContinue");
+        textsInMenu[1] = textObject.GetComponent<Text>();
+        textObject = GameObject.Find("TextSettings");
+        textsInMenu[2] = textObject.GetComponent<Text>();
+        textObject = GameObject.Find("TextQuit");
+        textsInMenu[3] = textObject.GetComponent<Text>();
 
     }
 
@@ -108,25 +109,18 @@ public class MainMenuScript : MonoBehaviour
     
     public void OnPointerEnter(PointerEventData eventData)  // function will run whenever cursor colides with object
     {
-        Debug.Log("Entered object");
         GameObject enteredObject = eventData.pointerEnter;
-        Debug.Log("Kurzor vstúpil na objekt: " + enteredObject.name);
         
         Button enteredButton = enteredObject.GetComponent<Button>();
 
         if (enteredButton != null)
         {
-            Debug.Log("Entered button");
-            //hovered = true;
-            //updateFlag = true;
-
             int buttonIndex = System.Array.IndexOf(buttonsInMenu, enteredButton);
             
             Debug.Log(buttonsInMenu[3]+"    "+enteredButton);
 
             if (buttonIndex != -1)
             {
-
                 hovered = true;
                 hoveredText = textsInMenu[buttonIndex];
                 colorBeforeHover = hoveredText.color;
@@ -137,7 +131,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        
         GameObject enteredObject = eventData.pointerEnter;
         
         Button enteredButton = enteredObject.GetComponent<Button>();
@@ -145,9 +138,7 @@ public class MainMenuScript : MonoBehaviour
         if (hovered==true) {
             if (enteredButton != null)
             {
-                Debug.Log("Exit works?1");
                 hoveredText.color = colorBeforeHover;
-                Debug.Log("Exit works?2");
                 hovered = false;
             }
         }
