@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+// Alica
+
 public class ButtonBehaviorScript : MonoBehaviour
 {
-    //public Text buttonText; // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
+    // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
+    // thic script is just for setting colors
     public Color colorClicked;
     public Color colorUnclicked;
     public Color colorHovered;
@@ -15,7 +19,7 @@ public class ButtonBehaviorScript : MonoBehaviour
     
     public Text buttonText;
     
-    public Text ChangeOfColorClickedButtonText(Text actualButtonText)
+    public Text ChangeOfColorClickedButtonText(Text actualButtonText)  // color of text changes when button is clicked
     {
         buttonText = actualButtonText;
         buttonText.color = colorClicked;
@@ -36,14 +40,14 @@ public class ButtonBehaviorScript : MonoBehaviour
         return buttonText;
     }
     
-    public Text ChangeOfColorSelectedButtonText(Text actualButtonText)
+    public Text ChangeOfColorSelectedButtonText(Text actualButtonText)  // selected buttons will have different color
     {
         buttonText = actualButtonText;
         buttonText.color = colorSelected;
         return buttonText;
     }
     
-    public Text ChangeOfColorHoveredSelectedButtonText(Text actualButtonText)
+    public Text ChangeOfColorHoveredSelectedButtonText(Text actualButtonText)  // also hovering on selected button will look different
     {
         buttonText = actualButtonText;
         buttonText.color = colorHoveredSelected;

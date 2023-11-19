@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// Alica
+
 public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //, IPointerEnterHandler, IPointerExitHandler
 {
