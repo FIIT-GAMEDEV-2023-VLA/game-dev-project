@@ -11,13 +11,13 @@ public class SceneManagerScript : MonoBehaviour
     private int savedScene;
     private int idScene;
     
-    public MainMenuScript mainMenu;
+    //public MainMenuScript mainMenu;
     
     
 
     void Start()
     {
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenuScript>(); 
+        //mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenuScript>(); 
         
     }
 
