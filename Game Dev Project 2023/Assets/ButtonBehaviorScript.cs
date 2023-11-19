@@ -11,6 +11,7 @@ public class ButtonBehaviorScript : MonoBehaviour
     public Color colorUnclicked;
     public Color colorHovered;
     public Color colorSelected;
+    public Color colorHoveredSelected;
     
     public Text buttonText;
     
@@ -39,6 +40,13 @@ public class ButtonBehaviorScript : MonoBehaviour
     {
         buttonText = actualButtonText;
         buttonText.color = colorSelected;
+        return buttonText;
+    }
+    
+    public Text ChangeOfColorHoveredSelectedButtonText(Text actualButtonText)
+    {
+        buttonText = actualButtonText;
+        buttonText.color = colorHoveredSelected;
         return buttonText;
     }
     

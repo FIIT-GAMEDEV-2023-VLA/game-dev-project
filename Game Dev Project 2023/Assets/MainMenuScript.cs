@@ -9,7 +9,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     //, IPointerEnterHandler, IPointerExitHandler
 {
 
-    public Text buttonNewGameText; // I want to change color of text in button when selected/hovered (to obtain responsiveness)
+    //public Text buttonNewGameText; // I want to change color of text in button when selected/hovered (to obtain responsiveness)
     //public Text buttonContinueText; 
     //public Text buttonSettingsText; 
     //public Text buttonQuitText; 
@@ -21,34 +21,32 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     public ButtonBehaviorScript buttonBehavior;
 
-    public float delayBetweenChangedScene;
+    public float delayBetweenChangedScene;  // delay before changing scene (for buttons to seem responsive)
 
     
     
-    private bool hovered = false;
+    private bool hovered = false;  // flag which tell if object of button is hovered
 
+    // here will be all buttons and text we use in main menu scene (which we will interact with)
     [SerializeField] Button[] buttonsInMenu;
     [SerializeField] Text[] textsInMenu;
 
-    //private int hoveredOnButton = 0;
     public Color colorBeforeHover;
     public Text hoveredText;
     
-    
-    
-    public Text selectedText;
-    private int selectedIndex = 0;
+    public Text selectedText;  // just for start because there were problems with setting right color after hovering on selected button at the beginning
+    private int selectedIndex = 0;  // for using key up and down (some index of buttons/texts)
     private int previousIndex = 0;
     
 
-    void Start()
+    void Start()  // loading some stuff for scene
     {
         buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();  // load of buttonBehavior script
         
         buttonsInMenu = new Button[4];  // I need to load some texts and buttons (editor in unity will not solve this for me)
         textsInMenu = new Text[4];
         
-        GameObject buttonObject = GameObject.Find("ButtonNG");
+        GameObject buttonObject = GameObject.Find("ButtonNG");  // I need to find all objects in scene to work with them
         buttonsInMenu[0] = buttonObject.GetComponent<Button>();
         buttonObject = GameObject.Find("ButtonContinue");
         buttonsInMenu[1] = buttonObject.GetComponent<Button>();
@@ -67,43 +65,47 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         textsInMenu[3] = textObject.GetComponent<Text>();
 
 
-        selectedText = textsInMenu[0];
+        selectedText = textsInMenu[0];  // just giving right colors to text because there were some problems at start with colors after hovering upon button/text which was selected at beginning
+        hoveredText = textsInMenu[0];
+        hoveredText.color = buttonBehavior.colorHoveredSelected;
+        colorBeforeHover = buttonBehavior.colorHoveredSelected;
+        selectedText.color = buttonBehavior.colorSelected;
 
     }
 
-    void Update() // here I will solve some hovering on buttont (because I have invisible buttons and I want to have responsive text)
+    void Update()  // just some key handling
     {
         
-        
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))  // up was selected so we move in menu up
         {
             previousIndex = selectedIndex;
             selectedIndex = selectedIndex - 1;
             if (selectedIndex == -1) { selectedIndex = 3; }
             
-            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);
+            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);  // colors to make buttons responsive
             textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
+            
 
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))  // down was selected so we move in menu down
         {
             previousIndex = selectedIndex;
             selectedIndex = selectedIndex + 1;
             if (selectedIndex == 4) { selectedIndex = 0; }
             
-            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);
+            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);  // colors to make buttons responsive
             textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
             
         }
         
     }
 
-    public void NewGame()
+    public void NewGame()  // after choosing New Game option in menu
     {
-        buttonNewGameText = buttonBehavior.ChangeOfColorClickedButtonText(buttonNewGameText);
+        textsInMenu[0] = buttonBehavior.ChangeOfColorClickedButtonText(textsInMenu[0]); // button clicked color
         
-        Invoke("LoadNewGameScene",delayBetweenChangedScene);
+        Invoke("LoadNewGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
     
     public void ContinueGame(){}
@@ -114,10 +116,10 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 
 
-    public void LoadNewGameScene()
+    public void LoadNewGameScene()  // just function to change scene
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        buttonNewGameText = buttonBehavior.ChangeOfColorSelectedButtonText(buttonNewGameText);
+        textsInMenu[0] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[0]); // to just change color of button back
     }
     
     
@@ -126,31 +128,37 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         GameObject enteredObject = eventData.pointerEnter;
         
-        Button enteredButton = enteredObject.GetComponent<Button>();
+        Button enteredButton = enteredObject.GetComponent<Button>();  // button on which we hovered
 
         if (enteredButton != null)
         {
-            int buttonIndex = System.Array.IndexOf(buttonsInMenu, enteredButton);
-            
-            Debug.Log(buttonsInMenu[3]+"    "+enteredButton);
+            int buttonIndex = System.Array.IndexOf(buttonsInMenu, enteredButton);  // we will identify the button
 
             if (buttonIndex != -1)
             {
                 hovered = true;
                 hoveredText = textsInMenu[buttonIndex];
                 colorBeforeHover = hoveredText.color;
-                textsInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredButtonText(textsInMenu[buttonIndex]);
+                
+                if (colorBeforeHover == buttonBehavior.colorSelected)  // there are different hovering colors when button is selected or is not selected
+                {
+                    textsInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredSelectedButtonText(textsInMenu[buttonIndex]);
+                }
+                else 
+                {
+                    textsInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredButtonText(textsInMenu[buttonIndex]);
+                }
             }
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)  // this function will run after exiting an object with cursor (responsivity/hovers)
     {
         GameObject enteredObject = eventData.pointerEnter;
         
-        Button enteredButton = enteredObject.GetComponent<Button>();
+        Button enteredButton = enteredObject.GetComponent<Button>();   // button we unhovered
 
-        if (hovered==true) {
+        if (hovered==true) {  // only if we hovered on button
             if (enteredButton != null)
             {
                 hoveredText.color = colorBeforeHover;

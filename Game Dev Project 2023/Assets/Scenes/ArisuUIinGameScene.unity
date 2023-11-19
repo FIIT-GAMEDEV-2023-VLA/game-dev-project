@@ -327,19 +327,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 156028029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 156028027}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &156028029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,19 +626,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 456171585}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 456171583}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &456171585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,9 +911,9 @@ MonoBehaviour:
   - {fileID: 371318208}
   - {fileID: 394248142}
   - {fileID: 1875659289}
-  colorBeforeHover: {r: 1, g: 0.67058825, b: 0.20784315, a: 0}
+  colorBeforeHover: {r: 0.18039216, g: 0.38431376, b: 0.5019608, a: 1}
   hoveredText: {fileID: 1791292837}
-  selectedText: {fileID: 0}
+  selectedText: {fileID: 1791292837}
 --- !u!114 &879417346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,7 +1134,8 @@ MonoBehaviour:
   colorClicked: {r: 1, g: 0.043137256, b: 0.13725491, a: 1}
   colorUnclicked: {r: 1, g: 0.67058825, b: 0.20784315, a: 1}
   colorHovered: {r: 0.8396226, g: 0.4904726, b: 0, a: 1}
-  colorSelected: {r: 1, g: 0.71290123, b: 0, a: 1}
+  colorSelected: {r: 0.18039216, g: 0.38431376, b: 0.5019608, a: 1}
+  colorHoveredSelected: {r: 0.08575116, g: 0.27665538, b: 0.38679248, a: 1}
   buttonText: {fileID: 1791292837}
 --- !u!1 &1118833069
 GameObject:
@@ -1207,7 +1184,7 @@ GameObject:
   - component: {fileID: 1336534493}
   - component: {fileID: 1336534492}
   m_Layer: 5
-  m_Name: GameLogoShadow
+  m_Name: GameLogoOldOneShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1680,7 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7137255, b: 0, a: 1}
+  m_Color: {r: 0.1764706, g: 0.38431376, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1800,7 +1777,7 @@ GameObject:
   - component: {fileID: 1885611076}
   - component: {fileID: 1885611075}
   m_Layer: 5
-  m_Name: GameLogo
+  m_Name: GameLogoOldOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2061,19 +2038,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2044851211}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2044851209}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2044851211
 MonoBehaviour:
   m_ObjectHideFlags: 0
