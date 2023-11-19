@@ -243,6 +243,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &362136638 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6557137335026798101, guid: c936111ba17f9ef4d88bcff25a3e4df8, type: 3}
+  m_PrefabInstance: {fileID: 955366804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &955366804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22883,6 +22888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6632100886474214069, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 362136638}
     - target: {fileID: 7268159630811684943, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.05
@@ -72837,6 +72846,6 @@ Tilemap:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1734717540}
   - {fileID: 1926630657}
   - {fileID: 955366804}
-  - {fileID: 1734717540}
