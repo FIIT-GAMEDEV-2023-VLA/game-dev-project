@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class ButtonBehaviorScript : MonoBehaviour
 {
     // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
-    // thic script is just for setting colors
+    // this script is just for setting colors
     public Color colorClicked;
     public Color colorUnclicked;
     public Color colorHovered;

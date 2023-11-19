@@ -11,17 +11,11 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     //, IPointerEnterHandler, IPointerExitHandler
 {
 
-    //public Text buttonNewGameText; // I want to change color of text in button when selected/hovered (to obtain responsiveness)
-    //public Text buttonContinueText; 
-    //public Text buttonSettingsText; 
-    //public Text buttonQuitText; 
-    //public Button buttonNewGame;
-    //public Button buttonContinue;
-    //public Button buttonSettings;
-    //public Button buttonQuit;
-    
-    
+    // I want to change color of text in button when selected/hovered (to obtain responsiveness)
     public ButtonBehaviorScript buttonBehavior;
+    
+    // for Loading of saved scene
+    public SceneManagerScript sceneManager;
 
     public float delayBetweenChangedScene;  // delay before changing scene (for buttons to seem responsive)
 
@@ -44,6 +38,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()  // loading some stuff for scene
     {
         buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();  // load of buttonBehavior script
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerScript>();  // load of scene manager script
         
         buttonsInMenu = new Button[4];  // I need to load some texts and buttons (editor in unity will not solve this for me)
         textsInMenu = new Text[4];
@@ -113,8 +108,13 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         
         Invoke("LoadNewGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
-    
-    public void ContinueGame(){}
+
+    public void ContinueGame()
+    {
+        textsInMenu[1] = buttonBehavior.ChangeOfColorClickedButtonText(textsInMenu[1]); // button clicked color
+        
+        Invoke("LoadSavedGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+    }
     
     public void SetSettings(){}
     
@@ -125,7 +125,13 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void LoadNewGameScene()  // just function to change scene
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        textsInMenu[0] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[0]); // to just change color of button back
+        //textsInMenu[0] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[0]); // to just change color of button back
+    }
+    
+    public void LoadSavedGameScene()  // just function to change scene
+    {
+        sceneManager.LoadLastSavedScene();
+        //textsInMenu[1] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[1]); // to just change color of button back
     }
     
     
@@ -174,4 +180,3 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     
 }
-        

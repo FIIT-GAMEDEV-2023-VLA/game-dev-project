@@ -7,6 +7,8 @@ TagManager:
   - Logic
   - ButtonManager
   - DelayManager
+  - SceneManager
+  - MainMenu
   layers:
   - Default
   - TransparentFX

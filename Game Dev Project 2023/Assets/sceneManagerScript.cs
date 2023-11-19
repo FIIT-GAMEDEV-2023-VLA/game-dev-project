@@ -1,14 +1,40 @@
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // Alica
 
-public class sceneManagerScript : MonoBehaviour
+public class SceneManagerScript : MonoBehaviour
 {
     private int savedScene;
     private int idScene;
+    
+    public MainMenuScript mainMenu;
+    
+    
+
+    void Start()
+    {
+        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenuScript>(); 
+        
+    }
+
+    void Update()
+    {
+        idScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (idScene != 0)  // if we are not in menu
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))  // escape for returning to menu (all will be saved meanwhile)
+            {
+                SaveScene();
+            }
+        }
+    }
     
     public void LoadLastSavedScene()  // not my code!: (loading of scene borrowed from net)
     {
@@ -20,7 +46,7 @@ public class sceneManagerScript : MonoBehaviour
         }
     }
 
-    public void SaveScene()
+    public void SaveScene()  // not my code!: (saving of scene borrowed from net)
     {
         idScene = SceneManager.GetActiveScene().buildIndex;
         
