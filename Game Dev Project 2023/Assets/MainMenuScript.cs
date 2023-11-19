@@ -70,7 +70,6 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         hoveredText.color = buttonBehavior.colorHoveredSelected;
         colorBeforeHover = buttonBehavior.colorHoveredSelected;
         selectedText.color = buttonBehavior.colorSelected;
-
     }
 
     void Update()  // just some key handling
@@ -97,6 +96,11 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);  // colors to make buttons responsive
             textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
             
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))  // after "enter" key pressed selected button will be clicked
+        {
+            buttonsInMenu[selectedIndex].onClick.Invoke();
         }
         
     }
