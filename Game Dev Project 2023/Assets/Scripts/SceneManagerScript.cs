@@ -12,6 +12,9 @@ public class SceneManagerScript : MonoBehaviour
     private int idScene;
     
     //public MainMenuScript mainMenu;
+
+
+    private bool wassaved = false;
     
     
 
@@ -36,21 +39,50 @@ public class SceneManagerScript : MonoBehaviour
     
     public void LoadLastSavedScene()  // not my code!: (loading of scene borrowed from net)
     {
-        savedScene = PlayerPrefs.GetInt("Saved");  // to get index of saved scene
+        //savedScene = PlayerPrefs.GetInt("Saved");  // to get index of saved scene
 
-        if (savedScene != 0)
+        //if (savedScene != 0)
+        //{
+        //    SceneManager.LoadSceneAsync(savedScene);  // to load scene
+        //}
+        
+        
+        if (wassaved == true)
         {
-            SceneManager.LoadSceneAsync(savedScene);  // to load scene
+            SceneManager.LoadScene("Saved2");
         }
     }
 
     public void SaveScene()  // not my code!: (saving of scene borrowed from net)
     {
-        idScene = SceneManager.GetActiveScene().buildIndex;
+        //idScene = SceneManager.GetActiveScene().buildIndex;
         
-        PlayerPrefs.SetInt("Saved", idScene);  // to save scene as "Saved"
-        PlayerPrefs.Save();
-        SceneManager.LoadSceneAsync(0);  // to load main menu
+        //PlayerPrefs.SetInt("Saved", idScene);  // to save scene as "Saved"
+        //PlayerPrefs.Save();
+        //SceneManager.LoadSceneAsync(0);  // to load main menu
+        
+        
+        
+        
+        
+        Scene currentScene = SceneManager.GetActiveScene();
+        Scene newScene = SceneManager.CreateScene("Saved2");
+        //GameObject sceneCopy = new GameObject("SceneCopy");
+
+        // Prechádzať všetky GameObjecty vo vybranej scéne
+        foreach (GameObject obj in currentScene.GetRootGameObjects())
+        {
+            // Vytvoriť kópiu GameObjectu
+            GameObject newObj = Instantiate(obj);
+
+            // Presunúť kópiu do novej scény
+            SceneManager.MoveGameObjectToScene(newObj, newScene);
+        }
+
+        wassaved = true;
+        
+        SceneManager.LoadSceneAsync(0);
+
     }
     
     
