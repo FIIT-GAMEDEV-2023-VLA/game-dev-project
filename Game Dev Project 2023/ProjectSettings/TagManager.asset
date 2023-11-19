@@ -44,6 +44,9 @@ TagManager:
   - name: background
     uniqueID: 640203853
     locked: 0
+  - name: props
+    uniqueID: 1721936987
+    locked: 0
   - name: terrain
     uniqueID: 4268650771
     locked: 0
