@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: terrain
     uniqueID: 4268650771
+    locked: 0
+  - name: character
+    uniqueID: 3558486189
     locked: 0
