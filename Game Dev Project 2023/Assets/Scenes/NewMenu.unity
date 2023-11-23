@@ -267,6 +267,26 @@ PrefabInstance:
       propertyPath: buttonText
       value: 
       objectReference: {fileID: 1780610031}
+    - target: {fileID: 5258760059098748654, guid: b65f693c421226d4c9122149be070729, type: 3}
+      propertyPath: imageClicked.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258760059098748654, guid: b65f693c421226d4c9122149be070729, type: 3}
+      propertyPath: imageHovered.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258760059098748654, guid: b65f693c421226d4c9122149be070729, type: 3}
+      propertyPath: imageSelected.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258760059098748654, guid: b65f693c421226d4c9122149be070729, type: 3}
+      propertyPath: imageUnclicked.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258760059098748654, guid: b65f693c421226d4c9122149be070729, type: 3}
+      propertyPath: imageHoveredSelected.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7228790412086521309, guid: b65f693c421226d4c9122149be070729, type: 3}
       propertyPath: m_Name
       value: Button Manager
