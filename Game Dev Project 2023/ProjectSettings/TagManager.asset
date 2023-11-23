@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Logic
+  - ButtonManager
+  - DelayManager
+  - SceneManager
+  - MainMenu
   layers:
   - Default
   - TransparentFX
@@ -11,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -44,6 +49,12 @@ TagManager:
   - name: background
     uniqueID: 640203853
     locked: 0
+  - name: props
+    uniqueID: 1721936987
+    locked: 0
   - name: terrain
     uniqueID: 4268650771
+    locked: 0
+  - name: character
+    uniqueID: 3558486189
     locked: 0
