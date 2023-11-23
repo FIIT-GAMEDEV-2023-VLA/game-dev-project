@@ -19,6 +19,32 @@ public class ButtonBehaviorScript : MonoBehaviour
     
     public Text buttonText;
     
+    
+    
+    
+    
+    
+    
+    
+    public Image[] imageClicked;
+    public Image[] imageUnclicked;
+    public Image[] imageHovered;
+    public Image[] imageSelected;
+    public Image[] imageHoveredSelected;
+    
+    
+    
+    
+    
+    
+    public Image buttonImage;
+    
+    
+    
+    
+    
+    
+    
     public Text ChangeOfColorClickedButtonText(Text actualButtonText)  // color of text changes when button is clicked
     {
         buttonText = actualButtonText;
