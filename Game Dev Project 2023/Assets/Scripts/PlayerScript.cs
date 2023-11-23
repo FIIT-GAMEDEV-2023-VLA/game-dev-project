@@ -5,17 +5,19 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     private float horizontal;
+    private float vertical;
     public float moveSpeed = 5f;
     public float jumpingPower = 12f;
 
     //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRend;
 
-    private enum AnimationState { idle, running, jumping, falling};
+    private enum AnimationState { idle, running, jumping, falling, sliding, crouching};
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
@@ -48,7 +51,7 @@ public class PlayerScript : MonoBehaviour
     private void UpdateAnimations(){
 
         AnimationState animState;
-
+        
         if (horizontal > 0f) {
             animState = AnimationState.running;
             spriteRend.flipX = false;
@@ -60,12 +63,23 @@ public class PlayerScript : MonoBehaviour
         else {
             animState = AnimationState.idle;
         }
+        
+        if (vertical < -0.1f && isGrounded())
+        {
+            animState = AnimationState.crouching;
+        }
+        
 
         if (rb.velocity.y > .05f) {
             animState = AnimationState.jumping;
         }
         else if (rb.velocity.y < -.05f) {
             animState = AnimationState.falling;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded()) //TODO: change this to a different input and adjust conditions
+        {
+            animState = AnimationState.sliding;
         }
 
         anim.SetInteger("animState", (int)animState);
