@@ -85,7 +85,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if (selectedIndex == -1) { selectedIndex = 3; }
             
             imagesInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButton(imagesInMenu[previousIndex], previousIndex);  // colors to make buttons responsive
-            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], previousIndex);
+            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], selectedIndex);
             
 
         }
@@ -97,7 +97,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if (selectedIndex == 4) { selectedIndex = 0; }
             
             imagesInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButton(imagesInMenu[previousIndex], previousIndex);  // colors to make buttons responsive
-            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], previousIndex);
+            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], selectedIndex);
             
         }
         
