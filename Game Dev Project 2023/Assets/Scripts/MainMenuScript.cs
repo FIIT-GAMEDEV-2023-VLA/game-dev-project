@@ -25,12 +25,18 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     // here will be all buttons and text we use in main menu scene (which we will interact with)
     [SerializeField] Button[] buttonsInMenu;
-    [SerializeField] Text[] textsInMenu;
+    //[SerializeField] Text[] textsInMenu;
+    [SerializeField] Image[] imagesInMenu;               // n
 
-    public Color colorBeforeHover;
-    public Text hoveredText;
+    //public Color colorBeforeHover;
+    //public Text hoveredText;
     
-    public Text selectedText;  // just for start because there were problems with setting right color after hovering on selected button at the beginning
+    public Sprite spriteBeforeHover;               // n
+    public Image hoveredImage;               // n
+    
+    //public Text selectedText;  // just for start because there were problems with setting right color after hovering on selected button at the beginning
+    public Image selectedImage;  // just for start because there were problems with setting right color after hovering on selected button at the beginning
+    
     private int selectedIndex = 0;  // for using key up and down (some index of buttons/texts)
     private int previousIndex = 0;
     
@@ -41,7 +47,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerScript>();  // load of scene manager script
         
         buttonsInMenu = new Button[4];  // I need to load some texts and buttons (editor in unity will not solve this for me)
-        textsInMenu = new Text[4];
+        imagesInMenu = new Image[4];
         
         GameObject buttonObject = GameObject.Find("ButtonNG");  // I need to find all objects in scene to work with them
         buttonsInMenu[0] = buttonObject.GetComponent<Button>();
@@ -52,21 +58,21 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         buttonObject = GameObject.Find("ButtonQuit");
         buttonsInMenu[3] = buttonObject.GetComponent<Button>();
         
-        GameObject textObject = GameObject.Find("TextNG");
-        textsInMenu[0] = textObject.GetComponent<Text>();
-        textObject = GameObject.Find("TextContinue");
-        textsInMenu[1] = textObject.GetComponent<Text>();
-        textObject = GameObject.Find("TextSettings");
-        textsInMenu[2] = textObject.GetComponent<Text>();
-        textObject = GameObject.Find("TextQuit");
-        textsInMenu[3] = textObject.GetComponent<Text>();
+        GameObject imageObject = GameObject.Find("ButtonNGImage");
+        imagesInMenu[0] = imageObject.GetComponent<Image>();
+        imageObject = GameObject.Find("ButtonContinueImage");
+        imagesInMenu[1] = imageObject.GetComponent<Image>();
+        imageObject = GameObject.Find("ButtonSettingsImage");
+        imagesInMenu[2] = imageObject.GetComponent<Image>();
+        imageObject = GameObject.Find("ButtonQuitImage");
+        imagesInMenu[3] = imageObject.GetComponent<Image>();
 
 
-        selectedText = textsInMenu[0];  // just giving right colors to text because there were some problems at start with colors after hovering upon button/text which was selected at beginning
-        hoveredText = textsInMenu[0];
-        hoveredText.color = buttonBehavior.colorHoveredSelected;
-        colorBeforeHover = buttonBehavior.colorHoveredSelected;
-        selectedText.color = buttonBehavior.colorSelected;
+        selectedImage = imagesInMenu[0];  // just giving right image because there were some problems at start after hovering upon button which was selected at beginning
+        hoveredImage = imagesInMenu[0];
+        hoveredImage.sprite = buttonBehavior.imageHoveredSelected[0];   // zmenim colorHoveredSelected tu bolo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        spriteBeforeHover = buttonBehavior.imageHoveredSelected[0];   // zmenim colorHoveredSelected tu bolo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        selectedImage.sprite = buttonBehavior.imageSelected[0];
     }
 
     void Update()  // just some key handling
@@ -78,8 +84,8 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             selectedIndex = selectedIndex - 1;
             if (selectedIndex == -1) { selectedIndex = 3; }
             
-            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);  // colors to make buttons responsive
-            textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
+            imagesInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButton(imagesInMenu[previousIndex], previousIndex);  // colors to make buttons responsive
+            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], previousIndex);
             
 
         }
@@ -90,8 +96,8 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             selectedIndex = selectedIndex + 1;
             if (selectedIndex == 4) { selectedIndex = 0; }
             
-            textsInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[previousIndex]);  // colors to make buttons responsive
-            textsInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[selectedIndex]);
+            imagesInMenu[previousIndex] = buttonBehavior.ChangeOfColorUnclickedButton(imagesInMenu[previousIndex], previousIndex);  // colors to make buttons responsive
+            imagesInMenu[selectedIndex] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[selectedIndex], previousIndex);
             
         }
         
@@ -104,14 +110,14 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void NewGame()  // after choosing New Game option in menu
     {
-        textsInMenu[0] = buttonBehavior.ChangeOfColorClickedButtonText(textsInMenu[0]); // button clicked color
+        imagesInMenu[0] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[0], 0); // button clicked color
         
         Invoke("LoadNewGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
 
     public void ContinueGame()
     {
-        textsInMenu[1] = buttonBehavior.ChangeOfColorClickedButtonText(textsInMenu[1]); // button clicked color
+        imagesInMenu[1] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[1], 1); // button clicked color
         
         Invoke("LoadSavedGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
@@ -125,13 +131,11 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void LoadNewGameScene()  // just function to change scene
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //textsInMenu[0] = buttonBehavior.ChangeOfColorSelectedButtonText(textsInMenu[0]); // to just change color of button back
     }
     
     public void LoadSavedGameScene()  // just function to change scene
     {
         sceneManager.LoadLastSavedScene();
-        //textsInMenu[1] = buttonBehavior.ChangeOfColorUnclickedButtonText(textsInMenu[1]); // to just change color of button back
     }
     
     
@@ -149,16 +153,16 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if (buttonIndex != -1)
             {
                 hovered = true;
-                hoveredText = textsInMenu[buttonIndex];
-                colorBeforeHover = hoveredText.color;
+                hoveredImage = imagesInMenu[buttonIndex];
+                spriteBeforeHover = hoveredImage.sprite;
                 
-                if (colorBeforeHover == buttonBehavior.colorSelected)  // there are different hovering colors when button is selected or is not selected
+                if (spriteBeforeHover == buttonBehavior.imageSelected[buttonIndex])  // there are different hovering colors when button is selected or is not selected
                 {
-                    textsInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredSelectedButtonText(textsInMenu[buttonIndex]);
+                    imagesInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredSelectedButton(imagesInMenu[buttonIndex], buttonIndex);
                 }
                 else 
                 {
-                    textsInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredButtonText(textsInMenu[buttonIndex]);
+                    imagesInMenu[buttonIndex] = buttonBehavior.ChangeOfColorHoveredButton(imagesInMenu[buttonIndex], buttonIndex);
                 }
             }
         }
@@ -173,7 +177,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (hovered==true) {  // only if we hovered on button
             if (enteredButton != null)
             {
-                hoveredText.color = colorBeforeHover;
+                hoveredImage.sprite = spriteBeforeHover;
                 hovered = false;
             }
         }
