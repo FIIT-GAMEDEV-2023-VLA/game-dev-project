@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ArisuUIinGameScene.unity
-    guid: 344341bd5350faf49930be388ea40042
+    path: Assets/Scenes/NewMenu.unity
+    guid: 1620d6b0de88663489f23029db61a620
   - enabled: 1
     path: Assets/Scenes/Demo Map.unity
     guid: 4e7f1017a430ea349b9a7bbce2cf30b5
+  - enabled: 1
+    path: Assets/Scenes/Saved.unity
+    guid: 4e3a1355b31867546a33daa91f990abf
   m_configObjects: {}
