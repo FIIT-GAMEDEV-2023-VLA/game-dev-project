@@ -6,6 +6,18 @@ using UnityEngine;
 
 // Alica
 
+
+
+
+
+
+
+// tento kod je cely zle to cele chcem prerobit este!!
+
+
+
+
+
 public class SceneManagerScript : MonoBehaviour
 {
     private int savedScene;
