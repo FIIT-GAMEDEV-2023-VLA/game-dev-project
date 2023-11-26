@@ -9,49 +9,52 @@ using UnityEngine.SceneManagement;
 
 public class ButtonBehaviorScript : MonoBehaviour
 {
-    // 'cause I want to change color of text in button when selected/hovered (to obtain responsiveness)
-    // this script is just for setting colors
-    public Color colorClicked;
-    public Color colorUnclicked;
-    public Color colorHovered;
-    public Color colorSelected;
-    public Color colorHoveredSelected;
+    // 'cause I want to change color of button when selected/hovered (to obtain responsiveness)
+    // this script is just for setting different looks of buttons while interacting with mouse and keys
     
-    public Text buttonText;
     
-    public Text ChangeOfColorClickedButtonText(Text actualButtonText)  // color of text changes when button is clicked
+    public Image[] buttons;  // I will name it like this, cause basicly images are replacement for buttons
+    public Sprite[] imageClicked;
+    public Sprite[] imageUnclicked;
+    public Sprite[] imageHovered;
+    public Sprite[] imageSelected;
+    public Sprite[] imageHoveredSelected;
+    
+    
+    
+    public Image ChangeOfColorClickedButton(Image actualButton, int idButton)  // color changes when button is clicked
     {
-        buttonText = actualButtonText;
-        buttonText.color = colorClicked;
-        return buttonText;
+        buttons[idButton] = actualButton;
+        buttons[idButton].sprite = imageClicked[idButton];
+        return buttons[idButton];
     }
     
-    public Text ChangeOfColorUnclickedButtonText(Text actualButtonText)
+    public Image ChangeOfColorUnclickedButton(Image actualButton, int idButton)
     {
-        buttonText = actualButtonText;
-        buttonText.color = colorUnclicked;
-        return buttonText;
+        buttons[idButton] = actualButton;
+        buttons[idButton].sprite = imageUnclicked[idButton];
+        return buttons[idButton];
     }
     
-    public Text ChangeOfColorHoveredButtonText(Text actualButtonText)
+    public Image ChangeOfColorHoveredButton(Image actualButton, int idButton)
     {
-        buttonText = actualButtonText;
-        buttonText.color = colorHovered;
-        return buttonText;
+        buttons[idButton] = actualButton;
+        buttons[idButton].sprite = imageHovered[idButton];
+        return buttons[idButton];
     }
     
-    public Text ChangeOfColorSelectedButtonText(Text actualButtonText)  // selected buttons will have different color
+    public Image ChangeOfColorSelectedButton(Image actualButton, int idButton)  // selected buttons will have different color
     {
-        buttonText = actualButtonText;
-        buttonText.color = colorSelected;
-        return buttonText;
+        buttons[idButton] = actualButton;
+        buttons[idButton].sprite = imageSelected[idButton];
+        return buttons[idButton];
     }
     
-    public Text ChangeOfColorHoveredSelectedButtonText(Text actualButtonText)  // also hovering on selected button will look different
+    public Image ChangeOfColorHoveredSelectedButton(Image actualButton, int idButton)  // also hovering on selected button will look different
     {
-        buttonText = actualButtonText;
-        buttonText.color = colorHoveredSelected;
-        return buttonText;
+        buttons[idButton] = actualButton;
+        buttons[idButton].sprite = imageHoveredSelected[idButton];
+        return buttons[idButton];
     }
     
 
