@@ -11,7 +11,6 @@ public class PlayerScript : MonoBehaviour
 
     //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
