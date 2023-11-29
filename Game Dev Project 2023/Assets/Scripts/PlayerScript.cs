@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRend;
+    [SerializeField] private Light2D playerLight2D;
 
     private enum AnimationState { idle, running, jumping, falling, sliding, crouching};
 
@@ -69,10 +71,10 @@ public class PlayerScript : MonoBehaviour
         }
         
 
-        if (rb.velocity.y > .05f) {
+        if (rb.velocity.y > .1f) {
             animState = AnimationState.jumping;
         }
-        else if (rb.velocity.y < -.05f) {
+        else if (rb.velocity.y < -.1f) {
             animState = AnimationState.falling;
         }
         
