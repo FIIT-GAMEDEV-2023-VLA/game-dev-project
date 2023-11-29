@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private Light2D playerLight2D;
 
-    private enum AnimationState { idle, running, jumping, falling, sliding, crouching};
+    private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Jump") && isGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
     }
@@ -54,33 +54,37 @@ public class PlayerScript : MonoBehaviour
         AnimationState animState;
         
         if (horizontal > 0f) {
-            animState = AnimationState.running;
+            animState = AnimationState.Running;
             spriteRend.flipX = false;
         }
         else if (horizontal < 0f) {
-            animState = AnimationState.running;
+            animState = AnimationState.Running;
             spriteRend.flipX = true;
         }
         else {
-            animState = AnimationState.idle;
+            animState = AnimationState.Idle;
         }
         
-        if (vertical < -0.1f && isGrounded())
+        if (vertical < -0.1f && IsGrounded())
         {
-            animState = AnimationState.crouching;
+            animState = AnimationState.CrouchingIdle;
+            if (horizontal != 0)
+            {
+                animState = AnimationState.CrouchingRunning;
+            }
         }
         
 
         if (rb.velocity.y > .1f) {
-            animState = AnimationState.jumping;
+            animState = AnimationState.Jumping;
         }
         else if (rb.velocity.y < -.1f) {
-            animState = AnimationState.falling;
+            animState = AnimationState.Falling;
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded()) //TODO: change this to a different input and adjust conditions
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded()) //TODO: change this to a different input and adjust conditions
         {
-            animState = AnimationState.sliding;
+            animState = AnimationState.Sliding;
         }
 
         anim.SetInteger("animState", (int)animState);
