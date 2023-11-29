@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Alica
 
@@ -21,6 +22,18 @@ public class LogicScript : MonoBehaviour
     public Image[] hearts;  // UI images v unity
     public Sprite Heart;
     public Sprite EmptyHeart;
+
+    void Start()
+    {
+        int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
+        if (idScene==2)
+        {
+            SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
+            Data data = saveManager.LoadMyStuffPlease();
+            playerHealth = data.playerHealth;
+            playerTorchCounter = data.playerTorchCounter;
+        }
+    }
 
     // neskôr v player script budeme overovať (pri kolizii), či má postava ešte životy, a keď stratí 3, tak sa z daného scriptu zavolá game over screen
     // aj player life status bude až v player scripte (status alive = true na false sa zmení iba ak bude mať nula životov)

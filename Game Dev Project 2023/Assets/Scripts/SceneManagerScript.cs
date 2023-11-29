@@ -26,14 +26,19 @@ public class SceneManagerScript : MonoBehaviour
     //public MainMenuScript mainMenu;
 
 
-    private bool wassaved = false;
+    //private bool wassaved = false;
+
+    private Data data;
     
+    
+    
+    public SaveManagerScript saveManager;
     
 
     void Start()
     {
         //mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenuScript>(); 
-        
+        saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
     }
 
     void Update()
@@ -59,10 +64,37 @@ public class SceneManagerScript : MonoBehaviour
         //}
         
         
-        if (wassaved == true)
+        //SceneManager.LoadScene("Saved2");
+        
+        // nope inak: budem tu načítavať veci z json súborov a potom iba klasicky loadnem scénu a nastavím stuff na pôvodný stav
+        
+        Data data = saveManager.LoadMyStuffPlease();
+
+        if (data != null)
         {
-            SceneManager.LoadScene("Saved2");
+
+            //SceneManager.LoadSceneAsync(1);
+            
+            //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
+
+            SceneManager.LoadScene(2);  // this will load copy of game scene only difference is in indexes so I can handle later loading of previous game states (by checking index of scene, id=2 means I need to load stuff from file)
+
+            
+            /*
+            PlayerScript playerStats = GameObject.Find("Player").GetComponent<PlayerScript>();
+            LogicScript logicStats = GameObject.Find("Logic Manager").GetComponent<LogicScript>();
+
+            var x = data.positionX;
+            var y = data.positionY;
+            var z = data.positionZ;
+
+            playerStats.transform.position = new Vector3(x, y, z);
+            logicStats.playerHealth = data.playerHealth;
+            logicStats.playerTorchCounter = data.playerTorchCounter;
+            */
+
         }
+        
     }
 
     public void SaveScene()  // not my code!: (saving of scene borrowed from net)
@@ -75,7 +107,7 @@ public class SceneManagerScript : MonoBehaviour
         
         
         
-        
+        /*
         
         Scene currentScene = SceneManager.GetActiveScene();
         Scene newScene = SceneManager.CreateScene("Saved2");
@@ -91,11 +123,41 @@ public class SceneManagerScript : MonoBehaviour
             SceneManager.MoveGameObjectToScene(newObj, newScene);
         }
 
-        wassaved = true;
+        */
+        
+        
+        saveManager.SaveMePlease();
+
+        //wassaved = true;
         
         SceneManager.LoadSceneAsync(0);
 
     }
+    
+    
+    
+    GameObject GetObjectFromScene(string sceneName, string objectName)
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+
+        if (scene.IsValid())
+        {
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+
+            foreach (GameObject obj in rootObjects)
+            {
+                if (obj.name == objectName)
+                {
+                    return obj;
+                }
+            }
+        }
+
+        return null;
+    }
+    
+    
+   
     
     
 }
