@@ -7,33 +7,18 @@ using UnityEngine;
 // Alica
 
 
-
-
-
-
-
-// tento kod je cely zle to cele chcem prerobit este!!
-
-
-
-
-
 public class SceneManagerScript : MonoBehaviour
 {
     private int savedScene;
     private int idScene;
-    
-    //public MainMenuScript mainMenu;
 
-
-    private bool wassaved = false;
-    
+    private Data data;
+    public SaveManagerScript saveManager;
     
 
     void Start()
     {
-        //mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenuScript>(); 
-        
+        saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
     }
 
     void Update()
@@ -49,49 +34,23 @@ public class SceneManagerScript : MonoBehaviour
         }
     }
     
-    public void LoadLastSavedScene()  // not my code!: (loading of scene borrowed from net)
+    public void LoadLastSavedScene()
     {
-        //savedScene = PlayerPrefs.GetInt("Saved");  // to get index of saved scene
+        
+        Data data = saveManager.LoadMyStuffPlease();
 
-        //if (savedScene != 0)
-        //{
-        //    SceneManager.LoadSceneAsync(savedScene);  // to load scene
-        //}
-        
-        
-        if (wassaved == true)
+        if (data != null)
         {
-            SceneManager.LoadScene("Saved2");
+            SceneManager.LoadScene(2);  // this will load copy of game scene only difference is in indexes so I can handle later loading of previous game states (by checking index of scene, id=2 means I need to load stuff from file)
+
         }
+        
     }
 
     public void SaveScene()  // not my code!: (saving of scene borrowed from net)
     {
-        //idScene = SceneManager.GetActiveScene().buildIndex;
         
-        //PlayerPrefs.SetInt("Saved", idScene);  // to save scene as "Saved"
-        //PlayerPrefs.Save();
-        //SceneManager.LoadSceneAsync(0);  // to load main menu
-        
-        
-        
-        
-        
-        Scene currentScene = SceneManager.GetActiveScene();
-        Scene newScene = SceneManager.CreateScene("Saved2");
-        //GameObject sceneCopy = new GameObject("SceneCopy");
-
-        // Prechádzať všetky GameObjecty vo vybranej scéne
-        foreach (GameObject obj in currentScene.GetRootGameObjects())
-        {
-            // Vytvoriť kópiu GameObjectu
-            GameObject newObj = Instantiate(obj);
-
-            // Presunúť kópiu do novej scény
-            SceneManager.MoveGameObjectToScene(newObj, newScene);
-        }
-
-        wassaved = true;
+        saveManager.SaveMePlease();
         
         SceneManager.LoadSceneAsync(0);
 

@@ -4,6 +4,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerScript : MonoBehaviour
 
     //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRend;
@@ -27,8 +28,24 @@ public class PlayerScript : MonoBehaviour
     private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
 
     // Start is called before the first frame update
+    //void Start()
+    //{
+        
+    //}
+    
     void Start()
     {
+        int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
+        if (idScene==2)
+        {
+            SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
+            Data data = saveManager.LoadMyStuffPlease();
+            var x = data.positionX;
+            var y = data.positionY;
+            var z = data.positionZ;
+
+            transform.position = new Vector3(x, y, z);
+        }
         isInputLocked = false;
         isFacingRight = true;
         isAlive = true;
