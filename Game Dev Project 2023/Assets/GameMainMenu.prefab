@@ -863,10 +863,10 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   delayBetweenChangedScene: 0
   buttonsInMenu: []
-  textsInMenu: []
-  colorBeforeHover: {r: 0, g: 0, b: 0, a: 0}
-  hoveredText: {fileID: 0}
-  selectedText: {fileID: 0}
+  imagesInMenu: []
+  spriteBeforeHover: {fileID: 0}
+  hoveredImage: {fileID: 0}
+  selectedImage: {fileID: 0}
 --- !u!1 &5209250537379361356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,10 +1083,10 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   delayBetweenChangedScene: 0
   buttonsInMenu: []
-  textsInMenu: []
-  colorBeforeHover: {r: 0, g: 0, b: 0, a: 0}
-  hoveredText: {fileID: 0}
-  selectedText: {fileID: 0}
+  imagesInMenu: []
+  spriteBeforeHover: {fileID: 0}
+  hoveredImage: {fileID: 0}
+  selectedImage: {fileID: 0}
 --- !u!1 &5710269224210351186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,14 +1240,10 @@ MonoBehaviour:
   - {fileID: 5597295078704092095}
   - {fileID: 6994823350565352747}
   - {fileID: 7383960000112646894}
-  textsInMenu:
-  - {fileID: 946417598024991762}
-  - {fileID: 5241357437756618216}
-  - {fileID: 8585390564732964813}
-  - {fileID: 3598078075183273774}
-  colorBeforeHover: {r: 0.18039216, g: 0.38431376, b: 0.5019608, a: 1}
-  hoveredText: {fileID: 946417598024991762}
-  selectedText: {fileID: 946417598024991762}
+  imagesInMenu: []
+  spriteBeforeHover: {fileID: 0}
+  hoveredImage: {fileID: 0}
+  selectedImage: {fileID: 0}
 --- !u!1 &6246659861855291548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,10 +1381,10 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   delayBetweenChangedScene: 0
   buttonsInMenu: []
-  textsInMenu: []
-  colorBeforeHover: {r: 0, g: 0, b: 0, a: 0}
-  hoveredText: {fileID: 0}
-  selectedText: {fileID: 0}
+  imagesInMenu: []
+  spriteBeforeHover: {fileID: 0}
+  hoveredImage: {fileID: 0}
+  selectedImage: {fileID: 0}
 --- !u!1 &6357998936923047576
 GameObject:
   m_ObjectHideFlags: 0
