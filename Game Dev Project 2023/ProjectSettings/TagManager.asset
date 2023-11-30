@@ -10,6 +10,7 @@ TagManager:
   - SceneManager
   - MainMenu
   - SaveManager
+  - TorchPathTrigger
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - TorchPath
+  - Props
+  - Background
   - 
   - 
   - 

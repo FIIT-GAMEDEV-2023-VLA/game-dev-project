@@ -1,6 +1,7 @@
 //using System.Collections;
 //using System.Collections.Generic;
 
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -70,6 +71,17 @@ public class PlayerScript : MonoBehaviour
             UpdateAnimations();
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Collision!" );
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Trigger!" );
+        Die();
     }
 
     private void FixedUpdate()
