@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerSlidingBehaviourScript : StateMachineBehaviour
 {
     
-
     private GameObject player;
     private PlayerScript playerScript;
     private BoxCollider2D playerBoxCollider2D;
@@ -24,6 +23,7 @@ public class PlayerSlidingBehaviourScript : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
         boxColliderEnterSizeY = playerBoxCollider2D.size.y;
         boxColliderEnterOffsetY = playerBoxCollider2D.offset.y;
 

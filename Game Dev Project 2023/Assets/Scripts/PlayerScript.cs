@@ -1,5 +1,7 @@
 //using System.Collections;
 //using System.Collections.Generic;
+
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -21,6 +23,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool isInputLocked;
     private bool isFacingRight;
+    private bool isAlive;
     private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
 
     // Start is called before the first frame update
@@ -28,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     {
         isInputLocked = false;
         isFacingRight = true;
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -35,27 +39,38 @@ public class PlayerScript : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-        if (!isInputLocked)
-        {
+        if (!isInputLocked && isAlive)
+        {  
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
         }
-        UpdateAnimations();
+
+        if (isAlive)
+        {
+            UpdateAnimations();
+        }
+
     }
 
     private void FixedUpdate()
     {
-        if (!isInputLocked)
+        if (!isInputLocked && isAlive)
         {
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         }
     }
-
+    
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
+    }
+
+    public void Die()
+    {
+        anim.SetTrigger("death");
+        isAlive = false;
     }
 
     private void UpdateAnimations(){
@@ -85,19 +100,18 @@ public class PlayerScript : MonoBehaviour
             }
         }
         
-
         if (rb.velocity.y > .1f) {
             animState = AnimationState.Jumping;
         }
         else if (rb.velocity.y < -.1f) {
             animState = AnimationState.Falling;
         }
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() && !isInputLocked) //TODO: change this to a different input and adjust conditions
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() &&
+            !isInputLocked) //TODO: change this to a different input and adjust conditions
         {
             float force = (isFacingRight) ? slideForce : (-1 * slideForce);
             rb.velocity = new Vector3(0, 0, 0);
-            rb.AddForce(new Vector2(force, 0),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
             animState = AnimationState.Sliding;
         }
 
