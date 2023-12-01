@@ -11,11 +11,17 @@ using Transform = UnityEngine.Transform;
 public class TorchPathCreatorScript : MonoBehaviour
 {
     [SerializeField] private GameObject triggerPrefab;
+    [SerializeField] private GameObject torchPrefab;
+    
     
     public void CreatePoint()
     {
         GameObject newPoint = Instantiate(original: triggerPrefab, parent: transform);
         Debug.Log("New Torch Path Trigger Point Created at coords: " + newPoint.transform.position);
+    }
+    
+    public void SpawnTorch(Transform originTransform){
+        
     }
     
     void OnDrawGizmos()
