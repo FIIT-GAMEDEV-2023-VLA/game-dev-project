@@ -4,12 +4,15 @@
 //using Unity.VisualScripting;
 //using UnityEditor.TextCore.Text;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class TorchThrowScript : MonoBehaviour
 {
     [SerializeField] private Transform torchTransform;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask triggerLayer;
+    [SerializeField] private Light2D torchLight;
+    [SerializeField] private CameraControllerScript cameraControllerScript;
     
     // Start is called before the first frame update
     void Start()
@@ -38,20 +41,18 @@ public class TorchThrowScript : MonoBehaviour
         return velocity * direction.normalized; 
     }
 
+    public void TorchEnd()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
     public void Bounce(Vector3 targetPos)
     {
         Vector3 velocity = GetBounceVelocity(torchTransform.position, targetPos, 65f);
         rb.velocity = velocity;
         Debug.Log("Resulting Velocity: " + velocity);
     }
-
-    //public void OnTriggerEnter2D(Collider2D other)
-    //{   
-    //    Debug.Log("Torch Trigger!");
-    //    Vector3 velocity = GetBounceVelocity(torchTransform.position, new Vector3(-21.39f, 12.57f, 0f), 45f);
-    //    rb.velocity = velocity;
-    //}
-
+    
     // Update is called once per frame
     //void Update()
     //{

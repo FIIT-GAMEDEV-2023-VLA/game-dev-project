@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 5775057737467237789}
   - component: {fileID: 7097017478656945166}
   - component: {fileID: 7911321060086312783}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -434,3 +434,4 @@ MonoBehaviour:
   anim: {fileID: 160645691197858326}
   spriteRend: {fileID: 6776941912337763460}
   playerLight2D: {fileID: 8004966010059030233}
+  torchSpawnZoneTag: TorchSpawnZone

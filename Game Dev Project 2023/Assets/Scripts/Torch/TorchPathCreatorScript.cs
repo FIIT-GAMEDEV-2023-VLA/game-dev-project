@@ -10,29 +10,38 @@ using Transform = UnityEngine.Transform;
 #if UNITY_EDITOR
 public class TorchPathCreatorScript : MonoBehaviour
 {
-    [SerializeField] private GameObject triggerPrefab;
-    [SerializeField] private GameObject torchPrefab;
-    
+    [SerializeField] private GameObject torchPathTriggerPrefab;
+    [SerializeField] private GameObject pathContainer;
     
     public void CreatePoint()
     {
-        GameObject newPoint = Instantiate(original: triggerPrefab, parent: transform);
-        Debug.Log("New Torch Path Trigger Point Created at coords: " + newPoint.transform.position);
-    }
-    
-    public void SpawnTorch(Transform originTransform){
+        Vector3 newPos;
         
+        if (pathContainer.transform.childCount > 0)
+        {
+            //Get position of last child
+            Vector3 lastChildPos = pathContainer.transform.GetChild(pathContainer.transform.childCount - 1).position;
+            newPos = new Vector3(lastChildPos.x, lastChildPos.y - 1, lastChildPos.z);
+        }
+        else
+        {
+            newPos = transform.position;
+        }
+        
+        GameObject newPoint = Instantiate(original: torchPathTriggerPrefab, parent: pathContainer.transform);
+        newPoint.transform.position = newPos;
+        Debug.Log("New Torch Path Trigger Point Created at coords: " + newPos);
     }
     
     void OnDrawGizmos()
     {
-        if (transform.childCount >0)
+        if (pathContainer.transform.childCount >0)
         {
-            foreach (Transform child in transform)
+            foreach (Transform child in pathContainer.transform)
             {
-                if (child.GetSiblingIndex() < transform.childCount - 1)
+                if (child.GetSiblingIndex() < pathContainer.transform.childCount - 1)
                 {
-                    Transform nextChild = transform.GetChild(child.GetSiblingIndex() + 1);
+                    Transform nextChild = pathContainer.transform.GetChild(child.GetSiblingIndex() + 1);
                     Gizmos.color = Color.blue;
                     Gizmos.DrawLine(child.position, nextChild.position);
                 }

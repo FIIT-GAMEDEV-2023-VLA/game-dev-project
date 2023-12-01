@@ -22,10 +22,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private Light2D playerLight2D;
+    [SerializeField] private string torchSpawnZoneTag;
 
+    private GameObject torchSpawnZonePath;
+        
     private bool isInputLocked;
     private bool isFacingRight;
     private bool isAlive;
+    private bool canThrowATorch;
     private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
     
     void Start()
@@ -44,6 +48,8 @@ public class PlayerScript : MonoBehaviour
         isInputLocked = false;
         isFacingRight = true;
         isAlive = true;
+        canThrowATorch = false;
+        torchSpawnZonePath = null;
     }
 
     // Update is called once per frame
@@ -57,15 +63,25 @@ public class PlayerScript : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() && !isInputLocked) //TODO: change this to a different input and adjust conditions
-        {
-            float force = (isFacingRight) ? slideForce : (-1 * slideForce);
-            rb.velocity = new Vector3(0, 0, 0);
-            rb.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
-            anim.SetTrigger("slide");
-        }
 
+            if (Input.GetKeyDown(KeyCode.LeftShift) &&
+                IsGrounded()) //TODO: change this to a different input and adjust conditions
+            {
+                float force = (isFacingRight) ? slideForce : (-1 * slideForce);
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
+                anim.SetTrigger("slide");
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath)
+            {   
+                Debug.Log("From Player - Spawning Torch!");
+
+                TorchPathScript torchPathScript = torchSpawnZonePath.GetComponent<TorchPathScript>(); 
+                torchPathScript.SpawnTorch(transform.position);
+
+            }
+        }
         if (isAlive)
         {
             UpdateAnimations();
@@ -87,9 +103,23 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Trigger!" );
-        Die();
+    {   
+        if (other.gameObject.CompareTag(torchSpawnZoneTag))
+        {
+            torchSpawnZonePath = other.gameObject.transform.parent.gameObject;
+            canThrowATorch = true;
+            Debug.Log("Player Entered a Torch Spawn Zone: "  + torchSpawnZonePath);
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {   
+        if (other.gameObject.CompareTag(torchSpawnZoneTag))
+        {
+            Debug.Log("Player Exited a Torch Spawn Zone" );
+            canThrowATorch = false;
+            torchSpawnZonePath = null;
+        }
     }
     
     private bool IsGrounded()
