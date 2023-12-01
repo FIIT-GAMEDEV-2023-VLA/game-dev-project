@@ -11,28 +11,14 @@ using Transform = UnityEngine.Transform;
 public class TorchPathCreatorScript : MonoBehaviour
 {
     [SerializeField] private GameObject triggerPrefab;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void CreatePoint()
     {
         GameObject newPoint = Instantiate(original: triggerPrefab, parent: transform);
-        foreach (Transform child in this.transform)
-        {
-            Debug.Log("Child coords: " + child.position);
-        }
-
+        Debug.Log("New Torch Path Trigger Point Created at coords: " + newPoint.transform.position);
     }
     
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         if (transform.childCount >0)
         {
