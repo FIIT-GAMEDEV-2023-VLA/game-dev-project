@@ -1082,7 +1082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 191730447}
   - component: {fileID: 191730448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26983,6 +26983,38 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1087295647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087295648}
+  m_Layer: 0
+  m_Name: TorchPath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1087295648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087295647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7239137, y: 14.680516, z: -0.004784599}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1792976317}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1150466644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27230,7 +27262,7 @@ GameObject:
   - component: {fileID: 1303260380}
   - component: {fileID: 1303260382}
   - component: {fileID: 1303260383}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28244,6 +28276,11 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 14, y: -26, z: 0}
     m_Extent: {x: 1.0500002, y: 1.0500002, z: 0}
+--- !u!4 &1792976317 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
+  m_PrefabInstance: {fileID: 771014042692820815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1806662168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80594,8 +80631,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1087295648}
     m_Modifications:
+    - target: {fileID: 2578122247608557106, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6449527058989312991, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_Name
       value: TorchPathTriggerPoint
@@ -80606,15 +80647,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 2.7139137
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.19
+      value: 1.5094843
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.004784599
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalRotation.w
@@ -80622,15 +80663,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8933617408753573092, guid: 87ffc88af346cfd4d8a85817e84e2925, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -80660,4 +80701,4 @@ SceneRoots:
   - {fileID: 590644886}
   - {fileID: 1303260379}
   - {fileID: 823073987}
-  - {fileID: 771014042692820815}
+  - {fileID: 1087295648}
