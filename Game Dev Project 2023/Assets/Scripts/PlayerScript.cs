@@ -72,6 +72,14 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
+    
+    private void FixedUpdate()
+    {
+        if (!isInputLocked && isAlive)
+        {
+            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -82,14 +90,6 @@ public class PlayerScript : MonoBehaviour
     {
         Debug.Log("Trigger!" );
         Die();
-    }
-
-    private void FixedUpdate()
-    {
-        if (!isInputLocked && isAlive)
-        {
-            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
-        }
     }
     
     private bool IsGrounded()

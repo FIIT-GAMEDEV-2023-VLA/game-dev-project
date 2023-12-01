@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2578122247608557106}
   - component: {fileID: 8882521280731306555}
   - component: {fileID: 1597753273880562714}
+  - component: {fileID: -5098787091181413159}
   m_Layer: 7
   m_Name: TorchPathTriggerPoint
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6449527058989312991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 16.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,3 +159,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-5098787091181413159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449527058989312991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f498023e8d586c94989d24aecab622d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
