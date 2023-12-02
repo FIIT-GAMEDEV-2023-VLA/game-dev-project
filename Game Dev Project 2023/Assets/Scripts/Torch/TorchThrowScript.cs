@@ -10,14 +10,15 @@ public class TorchThrowScript : MonoBehaviour
 {
     [SerializeField] private Transform torchTransform;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private LayerMask triggerLayer;
-    [SerializeField] private Light2D torchLight;
-    [SerializeField] private CameraControllerScript cameraControllerScript;
-    
+    [SerializeField] private Animator anim;
+
+    private CameraControllerScript cameraControllerScript;
     // Start is called before the first frame update
     void Start()
     {
+        cameraControllerScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControllerScript>();
         Debug.Log("Torch is Alive!");
+        cameraControllerScript.LockTo(transform);
     }
 
     private Vector3 GetBounceVelocity(Vector3 source, Vector3 target, float angle)
@@ -44,6 +45,13 @@ public class TorchThrowScript : MonoBehaviour
     public void TorchEnd()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        anim.SetTrigger("torch_death");
+    }
+
+    public void TorchDestruct()
+    {
+        Destroy(gameObject);
+        cameraControllerScript.MoveToPlayer();
     }
 
     public void Bounce(Vector3 targetPos)
@@ -52,9 +60,4 @@ public class TorchThrowScript : MonoBehaviour
         rb.velocity = velocity;
         Debug.Log("Resulting Velocity: " + velocity);
     }
-    
-    // Update is called once per frame
-    //void Update()
-    //{
-    //}
 }

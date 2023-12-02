@@ -10,6 +10,7 @@ public class TorchPathScript : MonoBehaviour
     public void SpawnTorch(Vector3 originPos)
     {
         Transform firstPoint = pathContainerTransform.GetChild(0);
+        Transform lastPoint = pathContainerTransform.GetChild(pathContainerTransform.childCount - 1);
         if (firstPoint)
         {   
             Debug.Log("Spawning Torch!");
