@@ -21,8 +21,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
-    [SerializeField] private Light2D playerLight2D;
     [SerializeField] private string torchSpawnZoneTag;
 
     private Vector3 spawnPoint;
@@ -81,6 +81,7 @@ public class PlayerScript : MonoBehaviour
 
         boxCollider2DOffset = boxCollider2D.offset;
         boxCollider2DSize = boxCollider2D.size;
+        animLight.Play("PlayerLight_Flickering");
     }
 
     // Update is called once per frame
@@ -161,7 +162,8 @@ public class PlayerScript : MonoBehaviour
     public void Spawn()
     {   
         isAlive = true;
-        isInputLocked = false;
+        UnlockInput();
+        animLight.Play("PlayerLight_Flickering");
         transform.position = spawnPoint;
     }
     
@@ -171,6 +173,7 @@ public class PlayerScript : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             anim.SetTrigger("death");
+            animLight.SetTrigger("death");
             isAlive = false;
         }
     }
@@ -230,13 +233,11 @@ public class PlayerScript : MonoBehaviour
 
     public void LockInput()
     {
-        //Debug.Log("Animations have been locked!");
         isInputLocked = true;
     }
 
     public void UnlockInput()
     {
-        //Debug.Log("Animations have been unlocked!");
         isInputLocked = false;
     }
 }
