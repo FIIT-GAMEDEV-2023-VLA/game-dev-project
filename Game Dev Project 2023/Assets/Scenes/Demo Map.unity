@@ -256,7 +256,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1721936987
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -395,16 +395,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8124349017266492707, guid: c936111ba17f9ef4d88bcff25a3e4df8, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936111ba17f9ef4d88bcff25a3e4df8, type: 3}
---- !u!4 &955366805 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6557137335026798101, guid: c936111ba17f9ef4d88bcff25a3e4df8, type: 3}
-  m_PrefabInstance: {fileID: 955366804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &955366806 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7911321060086312783, guid: c936111ba17f9ef4d88bcff25a3e4df8, type: 3}
@@ -489,7 +488,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26316525
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -73437,7 +73436,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1734717540}
   - {fileID: 1926630657}
-  - {fileID: 1734717540}
   - {fileID: 1688405873}
   - {fileID: 156948075}
   - {fileID: 7540221543671837918}
