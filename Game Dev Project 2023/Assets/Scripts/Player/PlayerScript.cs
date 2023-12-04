@@ -97,9 +97,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void CollideWithTrap()
     {
-        //Debug.Log("Collision!" );
+        Die();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -129,8 +129,17 @@ public class PlayerScript : MonoBehaviour
 
     public void Die()
     {
-        anim.SetTrigger("death");
-        isAlive = false;
+        if (isAlive)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            anim.SetTrigger("death");
+            isAlive = false;
+        }
+    }
+
+    public void Spawn()
+    {
+        //TODO: Implement this!
     }
 
     private void UpdateAnimations(){
