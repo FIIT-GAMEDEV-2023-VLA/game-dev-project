@@ -10,6 +10,8 @@ TagManager:
   - SceneManager
   - MainMenu
   - SaveManager
+  - TorchPathTrigger
+  - TorchSpawnZone
   layers:
   - Default
   - TransparentFX
@@ -18,12 +20,12 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - TorchPathPoint
+  - Props
+  - Background
+  - TorchThrowable
+  - TorchSpawZone
+  - Player
   - 
   - 
   - 
@@ -61,4 +63,7 @@ TagManager:
     locked: 0
   - name: particles
     uniqueID: 2216870659
+    locked: 0
+  - name: thrown torch
+    uniqueID: 553150527
     locked: 0

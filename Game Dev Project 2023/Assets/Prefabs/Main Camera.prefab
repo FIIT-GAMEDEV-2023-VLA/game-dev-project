@@ -66,7 +66,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 6557137335026798101, guid: 375dc3e25dbb8b543aa96dbc87050480, type: 3}
+  cameraMoveSpeed: 15
 --- !u!114 &-7799040618416784639
 MonoBehaviour:
   m_ObjectHideFlags: 0
