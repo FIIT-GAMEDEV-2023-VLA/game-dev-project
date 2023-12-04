@@ -61,8 +61,8 @@ public class TorchThrowScript : MonoBehaviour
 
     public void TorchDestruct()
     {
-        Destroy(gameObject);
         cameraControllerScript.MoveToPlayer();
+        Destroy(gameObject);
     }
 
     public void SetMaxDepth(float y)

@@ -169,7 +169,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (isAlive)
         {
-            rb.velocity = Vector3.zero;
+            rb.velocity = Vector2.zero;
             anim.SetTrigger("death");
             isAlive = false;
         }
