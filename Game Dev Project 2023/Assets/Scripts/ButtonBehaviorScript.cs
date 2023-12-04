@@ -19,11 +19,12 @@ public class ButtonBehaviorScript : MonoBehaviour
     public Sprite[] imageHovered;
     public Sprite[] imageSelected;
     public Sprite[] imageHoveredSelected;
-    
-    
+
+    [SerializeField] private AudioSource buttonClickedSound;
     
     public Image ChangeOfColorClickedButton(Image actualButton, int idButton)  // color changes when button is clicked
     {
+        buttonClickedSound.Play();
         buttons[idButton] = actualButton;
         buttons[idButton].sprite = imageClicked[idButton];
         return buttons[idButton];
@@ -45,6 +46,7 @@ public class ButtonBehaviorScript : MonoBehaviour
     
     public Image ChangeOfColorSelectedButton(Image actualButton, int idButton)  // selected buttons will have different color
     {
+        buttonClickedSound.Play();
         buttons[idButton] = actualButton;
         buttons[idButton].sprite = imageSelected[idButton];
         return buttons[idButton];
