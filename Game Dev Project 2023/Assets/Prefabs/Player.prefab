@@ -424,9 +424,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpingPower: 12
+  jumpingPower: 14
   slideForce: 5
+  moveSpeedModifier: 1
   rb: {fileID: 5775057737467237789}
+  boxCollider2D: {fileID: 7097017478656945166}
   groundCheck: {fileID: 8575126469657258272}
   groundLayer:
     serializedVersion: 2

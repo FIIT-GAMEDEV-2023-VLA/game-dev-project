@@ -1,10 +1,8 @@
-//using System.Collections;
-//using System.Collections.Generic;
-
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSlidingBehaviourScript : StateMachineBehaviour
+public class PlayerCrouchingBehaviourScript : StateMachineBehaviour
 {
     private GameObject player;
     private PlayerScript playerScript;
@@ -13,20 +11,17 @@ public class PlayerSlidingBehaviourScript : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerScript>();
     }
-
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        playerScript.SetMoveSpeedModifier(0.6f);
         playerScript.SetSmallHitBox();
-        playerScript.LockInput();
     }
-    
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //OnStateMachineExit is called when exiting a state machine via its Exit Node
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    {   
+        playerScript.SetMoveSpeedModifier(1f);
         playerScript.SetNormalHitBox();
-        playerScript.UnlockInput();
     }
-    
 }

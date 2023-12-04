@@ -9,14 +9,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float horizontal;
-    private float vertical;
     public float moveSpeed = 5f;
     public float jumpingPower = 12f;
     public float slideForce = 5f;
-
-    //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
+    public float moveSpeedModifier = 1f;
+    
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private BoxCollider2D boxCollider2D;
+    private Vector2 boxCollider2DOffset;
+    private Vector2 boxCollider2DSize;
     [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
@@ -24,8 +25,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Light2D playerLight2D;
     [SerializeField] private string torchSpawnZoneTag;
 
+    private Transform spawnPoint;
+
     private GameObject torchSpawnZonePath;
-        
+    
+    // Input Axes
+    private float horizontal;
+    private float vertical;
+    
     private bool isInputLocked;
     private bool isFacingRight;
     private bool isAlive;
@@ -50,6 +57,9 @@ public class PlayerScript : MonoBehaviour
         isAlive = true;
         canThrowATorch = false;
         torchSpawnZonePath = null;
+
+        boxCollider2DOffset = boxCollider2D.offset;
+        boxCollider2DSize = boxCollider2D.size;
     }
 
     // Update is called once per frame
@@ -93,7 +103,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (!isInputLocked && isAlive)
         {
-            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * (moveSpeed * moveSpeedModifier), rb.velocity.y);
         }
     }
 
@@ -126,20 +136,20 @@ public class PlayerScript : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
     }
-
+    
+    public void Spawn()
+    {
+        //TODO: Implement this!
+    }
+    
     public void Die()
     {
         if (isAlive)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.velocity = Vector3.zero;
             anim.SetTrigger("death");
             isAlive = false;
         }
-    }
-
-    public void Spawn()
-    {
-        //TODO: Implement this!
     }
 
     private void UpdateAnimations(){
@@ -176,6 +186,23 @@ public class PlayerScript : MonoBehaviour
             animState = AnimationState.Falling;
         }
         anim.SetInteger("animState", (int)animState);
+    }
+
+    public void SetMoveSpeedModifier(float modifier)
+    {
+        moveSpeedModifier = modifier;
+    }
+
+    public void SetSmallHitBox()
+    {
+        boxCollider2D.size = new Vector2(boxCollider2DSize.x, boxCollider2DSize.y / 2f);
+        boxCollider2D.offset = new Vector2(boxCollider2DOffset.x, boxCollider2DOffset.y - (boxCollider2DSize.y / 4f));
+    }
+
+    public void SetNormalHitBox()
+    {
+        boxCollider2D.size = boxCollider2DSize;
+        boxCollider2D.offset = boxCollider2DOffset;
     }
 
     public void LockInput()
