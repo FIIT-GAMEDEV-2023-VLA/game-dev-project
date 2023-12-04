@@ -13,6 +13,7 @@ public class TorchThrowScript : MonoBehaviour
     [SerializeField] private Animator anim;
 
     private CameraControllerScript cameraControllerScript;
+    private float maxDepth = 50f;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,12 @@ public class TorchThrowScript : MonoBehaviour
     {
         Destroy(gameObject);
         cameraControllerScript.MoveToPlayer();
+    }
+
+    public void SetMaxDepth(float y)
+    {
+        maxDepth = y;
+        Debug.Log("Max Depth: " + y);
     }
 
     public void Bounce(Vector3 targetPos)

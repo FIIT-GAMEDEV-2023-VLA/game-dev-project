@@ -16,6 +16,9 @@ public class TorchPathScript : MonoBehaviour
             Debug.Log("Spawning Torch!");
             GameObject newTorch = Instantiate(original: torchPrefab, parent: transform);
             newTorch.transform.position = new Vector3(firstPoint.position.x, originPos.y, 0f);
+            
+            
+            newTorch.SendMessage("SetMaxDepth", lastPoint.position.y);
         }
     }
 }
