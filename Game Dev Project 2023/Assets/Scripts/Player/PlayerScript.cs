@@ -1,6 +1,7 @@
 //using System.Collections;
 //using System.Collections.Generic;
 
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -21,17 +22,15 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private Light2D playerLight2D;
+    [SerializeField] private string torchSpawnZoneTag;
 
+    private GameObject torchSpawnZonePath;
+        
     private bool isInputLocked;
     private bool isFacingRight;
     private bool isAlive;
+    private bool canThrowATorch;
     private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
-
-    // Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
     
     void Start()
     {
@@ -49,6 +48,8 @@ public class PlayerScript : MonoBehaviour
         isInputLocked = false;
         isFacingRight = true;
         isAlive = true;
+        canThrowATorch = false;
+        torchSpawnZonePath = null;
     }
 
     // Update is called once per frame
@@ -57,25 +58,67 @@ public class PlayerScript : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         if (!isInputLocked && isAlive)
-        {  
+        {
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
-        }
 
+            if (Input.GetKeyDown(KeyCode.LeftShift) &&
+                IsGrounded()) //TODO: change this to a different input and adjust conditions
+            {
+                float force = (isFacingRight) ? slideForce : (-1 * slideForce);
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
+                anim.SetTrigger("slide");
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath)
+            {   
+                Debug.Log("From Player - Spawning Torch!");
+
+                TorchPathScript torchPathScript = torchSpawnZonePath.GetComponent<TorchPathScript>(); 
+                torchPathScript.SpawnTorch(transform.position);
+
+            }
+        }
         if (isAlive)
         {
             UpdateAnimations();
         }
 
     }
-
+    
     private void FixedUpdate()
     {
         if (!isInputLocked && isAlive)
         {
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Collision!" );
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {   
+        if (other.gameObject.CompareTag(torchSpawnZoneTag))
+        {
+            torchSpawnZonePath = other.gameObject.transform.parent.gameObject;
+            canThrowATorch = true;
+            Debug.Log("Player Entered a Torch Spawn Zone: "  + torchSpawnZonePath);
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {   
+        if (other.gameObject.CompareTag(torchSpawnZoneTag))
+        {
+            Debug.Log("Player Exited a Torch Spawn Zone" );
+            canThrowATorch = false;
+            torchSpawnZonePath = null;
         }
     }
     
@@ -123,15 +166,6 @@ public class PlayerScript : MonoBehaviour
         else if (rb.velocity.y < -.1f) {
             animState = AnimationState.Falling;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() &&
-            !isInputLocked) //TODO: change this to a different input and adjust conditions
-        {
-            float force = (isFacingRight) ? slideForce : (-1 * slideForce);
-            rb.velocity = new Vector3(0, 0, 0);
-            rb.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
-            animState = AnimationState.Sliding;
-        }
-
         anim.SetInteger("animState", (int)animState);
     }
 

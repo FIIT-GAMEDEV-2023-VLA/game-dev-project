@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2186028480266447168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.17, z: 0}
+  m_LocalPosition: {x: 0, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 5775057737467237789}
   - component: {fileID: 7097017478656945166}
   - component: {fileID: 7911321060086312783}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -434,3 +434,4 @@ MonoBehaviour:
   anim: {fileID: 160645691197858326}
   spriteRend: {fileID: 6776941912337763460}
   playerLight2D: {fileID: 8004966010059030233}
+  torchSpawnZoneTag: TorchSpawnZone
