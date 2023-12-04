@@ -3,6 +3,8 @@
 //using System.Collections.Generic;
 //using Unity.VisualScripting;
 //using UnityEditor.TextCore.Text;
+
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -13,13 +15,21 @@ public class TorchThrowScript : MonoBehaviour
     [SerializeField] private Animator anim;
 
     private CameraControllerScript cameraControllerScript;
-    private float maxDepth = 50f;
+    private float maxDepth = -100f;
     // Start is called before the first frame update
     void Start()
     {
         cameraControllerScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControllerScript>();
         Debug.Log("Torch is Alive!");
         cameraControllerScript.LockTo(transform);
+    }
+
+    public void Update()
+    {
+        if (transform.position.y <= maxDepth)
+        {
+            TorchEnd();
+        }
     }
 
     private Vector3 GetBounceVelocity(Vector3 source, Vector3 target, float angle)
@@ -58,7 +68,7 @@ public class TorchThrowScript : MonoBehaviour
     public void SetMaxDepth(float y)
     {
         maxDepth = y;
-        Debug.Log("Max Depth: " + y);
+        Debug.Log("Torch Max Depth Set To: " + y);
     }
 
     public void Bounce(Vector3 targetPos)

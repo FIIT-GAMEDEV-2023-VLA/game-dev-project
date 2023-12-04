@@ -25,7 +25,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Light2D playerLight2D;
     [SerializeField] private string torchSpawnZoneTag;
 
-    private Transform spawnPoint;
+    private Vector3 spawnPoint;
+    private Vector3 startingSpawnPoint;
 
     private GameObject torchSpawnZonePath;
     
@@ -41,7 +42,22 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
+
+        GameObject startingSpawnPointGameObject = GameObject.FindGameObjectWithTag("StartingSpawnPoint");
+        if (!startingSpawnPointGameObject)
+        {
+            startingSpawnPoint = transform.position;
+        }
+        else
+        {
+            startingSpawnPoint = startingSpawnPointGameObject.transform.position;
+        }
+
+        spawnPoint = startingSpawnPoint;
+        
+        
         int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
+        Debug.Log("Scene Build Index: " + idScene);
         if (idScene==2)
         {
             SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
@@ -49,12 +65,17 @@ public class PlayerScript : MonoBehaviour
             var x = data.positionX;
             var y = data.positionY;
             var z = data.positionZ;
-
+            
             transform.position = new Vector3(x, y, z);
         }
+        else
+        {
+            Spawn();
+        }
+        
+        isAlive = true;
         isInputLocked = false;
         isFacingRight = true;
-        isAlive = true;
         canThrowATorch = false;
         torchSpawnZonePath = null;
 
@@ -138,8 +159,10 @@ public class PlayerScript : MonoBehaviour
     }
     
     public void Spawn()
-    {
-        //TODO: Implement this!
+    {   
+        isAlive = true;
+        isInputLocked = false;
+        transform.position = spawnPoint;
     }
     
     public void Die()

@@ -13,6 +13,7 @@ TagManager:
   - TorchPathTrigger
   - TorchSpawnZone
   - TrapSawBlades
+  - StartingSpawnPoint
   layers:
   - Default
   - TransparentFX
