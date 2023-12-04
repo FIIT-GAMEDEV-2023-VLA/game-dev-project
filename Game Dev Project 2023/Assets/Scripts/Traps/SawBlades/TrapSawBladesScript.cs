@@ -43,4 +43,15 @@ public class TrapSawBladesScript : MonoBehaviour
             currentCheckPoint = checkPoint1;
         }
     }
+    
+    void OnDrawGizmos()
+    {
+        if (checkPoint1 && checkPoint2)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(checkPoint1.position, checkPoint2.position);
+            Gizmos.DrawSphere(checkPoint1.position, 0.5f);
+            Gizmos.DrawSphere(checkPoint2.position, 0.5f);
+        }
+    }
 }
