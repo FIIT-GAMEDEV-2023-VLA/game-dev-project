@@ -6,6 +6,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
 
+// Alica
+
 public class SaveManagerScript : MonoBehaviour
 {
     
@@ -31,9 +33,9 @@ public class SaveManagerScript : MonoBehaviour
     {
         
         Data myData = new Data();  // just wrapped data for better saving
-        myData.positionX = playerStats.groundCheck.position.x;
-        myData.positionY = playerStats.groundCheck.position.y;
-        myData.positionZ = playerStats.groundCheck.position.z;
+        myData.positionX = playerStats.transform.position.x;
+        myData.positionY = playerStats.transform.position.y;
+        myData.positionZ = playerStats.transform.position.z;
         myData.playerHealth = logicStats.playerHealth;
         myData.playerTorchCounter = logicStats.playerTorchCounter;
 
@@ -64,7 +66,7 @@ public class SaveManagerScript : MonoBehaviour
 }
 
 
-[System.Serializable] public class Data
+[System.Serializable] public class Data  // in this format I will be saving my game data
 {
     
     public float positionX;
