@@ -6,7 +6,6 @@ public class TrapSawBladesCollisionScript : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger Entered!");
         if (other.gameObject.CompareTag("Player"))
         {   
             Debug.Log("Saw Trap Triggered On Player!");

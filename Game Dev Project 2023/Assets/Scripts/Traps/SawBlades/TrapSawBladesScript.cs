@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapSawBladesScript : MonoBehaviour
@@ -34,14 +31,7 @@ public class TrapSawBladesScript : MonoBehaviour
 
     private void SwapCheckpoints()
     {
-        if (currentCheckPoint == checkPoint1)
-        {
-            currentCheckPoint = checkPoint2;
-        }
-        else
-        {
-            currentCheckPoint = checkPoint1;
-        }
+        currentCheckPoint = currentCheckPoint == checkPoint1 ? checkPoint2 : checkPoint1;
     }
     
     void OnDrawGizmos()
