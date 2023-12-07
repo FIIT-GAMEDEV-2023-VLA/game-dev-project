@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7028517856865984149}
   - component: {fileID: 7172150474443364238}
   - component: {fileID: 8848640504687660451}
+  - component: {fileID: 5610310403332110133}
   m_Layer: 13
   m_Name: SawBlade
   m_TagString: Untagged
@@ -148,6 +149,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5610310403332110133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687345908363651365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cc0ccabb1c2714b85f97964c4a2a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950872220803380883
 GameObject:
   m_ObjectHideFlags: 0

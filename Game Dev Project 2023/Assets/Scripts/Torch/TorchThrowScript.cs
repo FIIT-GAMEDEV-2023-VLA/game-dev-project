@@ -24,10 +24,13 @@ public class TorchThrowScript : MonoBehaviour
         }
     }
 
+    private Vector3 GetBounceVelocity2(Vector3 source, Vector3 target, float initialAngle)
+    {
+        return new Vector3();
+    }
+
     private Vector3 GetBounceVelocity(Vector3 source, Vector3 target, float angle)
     {
-        //TODO:
-        //v0 = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset))
         
         Vector3 direction = target - source;   
         
