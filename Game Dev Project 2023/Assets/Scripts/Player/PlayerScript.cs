@@ -107,11 +107,8 @@ public class PlayerScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath)
             {   
-                Debug.Log("From Player - Spawning Torch!");
-
                 TorchPathScript torchPathScript = torchSpawnZonePath.GetComponent<TorchPathScript>(); 
                 torchPathScript.SpawnTorch(transform.position);
-
             }
         }
         if (isAlive)

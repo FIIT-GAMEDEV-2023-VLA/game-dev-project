@@ -1,12 +1,4 @@
-//using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using Unity.VisualScripting;
-//using UnityEditor.TextCore.Text;
-
-using System;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class TorchThrowScript : MonoBehaviour
 {
@@ -34,6 +26,9 @@ public class TorchThrowScript : MonoBehaviour
 
     private Vector3 GetBounceVelocity(Vector3 source, Vector3 target, float angle)
     {
+        //TODO:
+        //v0 = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset))
+        
         Vector3 direction = target - source;   
         
         float h = direction.y;                                           
@@ -73,7 +68,7 @@ public class TorchThrowScript : MonoBehaviour
 
     public void Bounce(Vector3 targetPos)
     {
-        Vector3 velocity = GetBounceVelocity(torchTransform.position, targetPos, 65f);
+        Vector3 velocity = GetBounceVelocity(torchTransform.position, targetPos, 65.0f);
         rb.velocity = velocity;
         Debug.Log("Resulting Velocity: " + velocity);
     }
