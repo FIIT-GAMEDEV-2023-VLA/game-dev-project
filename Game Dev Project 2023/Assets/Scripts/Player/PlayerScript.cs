@@ -43,7 +43,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
 
-        GameObject startingSpawnPointGameObject = GameObject.FindGameObjectWithTag("StartingSpawnPoint");
+        GameObject startingSpawnPointGameObject = GameObject.FindGameObjectWithTag("SpawnPoint");
         if (!startingSpawnPointGameObject)
         {
             startingSpawnPoint = transform.position;
