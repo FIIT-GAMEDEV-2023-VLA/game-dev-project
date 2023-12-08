@@ -39,6 +39,8 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     private int selectedIndex = 0;  // for using key up and down (some index of buttons/texts)
     private int previousIndex = 0;
+
+    private bool wasClicked = false; // just for better UX cause there were this problem that after cliked button with mouse and exiting it, color was changed back to normal (because of unhover)
     
 
     void Start()  // loading some stuff for scene
@@ -70,9 +72,19 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         selectedImage = imagesInMenu[0];  // just giving right image because there were some problems at start after hovering upon button which was selected at beginning
         hoveredImage = imagesInMenu[0];
-        hoveredImage.sprite = buttonBehavior.imageHoveredSelected[0];   // zmenim colorHoveredSelected tu bolo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        spriteBeforeHover = buttonBehavior.imageHoveredSelected[0];   // zmenim colorHoveredSelected tu bolo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        hoveredImage.sprite = buttonBehavior.imageHoveredSelected[0];
+        spriteBeforeHover = buttonBehavior.imageHoveredSelected[0];
         selectedImage.sprite = buttonBehavior.imageSelected[0];
+        
+            
+        if (PlayerPrefs.HasKey("sound"))
+        {
+            AudioListener.volume = PlayerPrefs.GetFloat("sound");
+        }
+        else
+        {
+            AudioListener.volume = 0.26f;
+        }
     }
 
     void Update()  // just some key handling
@@ -110,6 +122,7 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void NewGame()  // after choosing New Game option in menu
     {
+        wasClicked = true; // for better UX I explained it up ^
         imagesInMenu[0] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[0], 0); // button clicked color
         
         Invoke("LoadNewGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
@@ -117,12 +130,19 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void ContinueGame()
     {
+        wasClicked = true; // for better UX I explained it up ^
         imagesInMenu[1] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[1], 1); // button clicked color
         
         Invoke("LoadSavedGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
-    
-    public void SetSettings(){}
+
+    public void SetSettings()
+    {
+        wasClicked = true; // for better UX I explained it up ^
+        imagesInMenu[2] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[2], 2); // button clicked color
+        
+        Invoke("LoadSettingseScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+    }
     
     public void QuitGame(){}
 
@@ -136,6 +156,11 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void LoadSavedGameScene()  // just function to change scene
     {
         sceneManager.LoadLastSavedScene();
+    }
+    
+    public void LoadSettingseScene()  // just function to change scene
+    {
+        SceneManager.LoadScene(3);
     }
     
     
@@ -168,19 +193,29 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)  // this function will run after exiting an object with cursor (responsivity/hovers)
+    public void
+        OnPointerExit(
+            PointerEventData eventData) // this function will run after exiting an object with cursor (responsivity/hovers)
     {
-        GameObject enteredObject = eventData.pointerEnter;
-        
-        Button enteredButton = enteredObject.GetComponent<Button>();   // button we unhovered
+        if (wasClicked == false)
+        {
 
-        if (hovered==true) {  // only if we hovered on button
-            if (enteredButton != null)
+            GameObject enteredObject = eventData.pointerEnter;
+
+            Button enteredButton = enteredObject.GetComponent<Button>(); // button we unhovered
+
+            if (hovered == true)
             {
-                hoveredImage.sprite = spriteBeforeHover;
-                hovered = false;
+                // only if we hovered on button
+                if (enteredButton != null)
+                {
+                    hoveredImage.sprite = spriteBeforeHover;
+                    hovered = false;
+                }
             }
         }
+
+        
     }
     
 }

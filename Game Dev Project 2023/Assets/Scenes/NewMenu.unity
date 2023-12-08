@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &59583886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990769090196791808, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+  m_PrefabInstance: {fileID: 1780610030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255bdb204304c10499228cdd81934810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &82493167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -255,6 +266,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245063727}
   m_CullTransparentMesh: 1
+--- !u!1 &283379942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7000911919434972521, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
+  m_PrefabInstance: {fileID: 4091625158570623281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &283379945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283379942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c70a9c7162c4644b88663797232fd0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 0}
+  volume: 0.26
 --- !u!224 &382971345 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4858375653459888189, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
@@ -1417,6 +1447,34 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 59583886}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994823350565352747, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8014136605382975573, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1629,10 +1687,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGmusic
       objectReference: {fileID: 0}
+    - target: {fileID: 9173159730485568985, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7000911919434972521, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 283379945}
   m_SourcePrefab: {fileID: 100100000, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
