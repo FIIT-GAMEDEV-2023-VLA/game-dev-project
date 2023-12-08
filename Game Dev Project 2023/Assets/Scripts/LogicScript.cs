@@ -41,7 +41,7 @@ public class LogicScript : MonoBehaviour
     void Update()  // UI (hearts) and torch count
     {
         if (playerHealth>numOfHeartContainers) { playerHealth=numOfHeartContainers; } // lebo health nemoze byt viac ako mame srdiecok na obrazovke
-        for (int i = 0; i < hearts.Length; i++)  // how many hearts will be visible (total health)
+        for (int i = 0; i < hearts.Length; i++)  // how many hearts will be visible (total health), tento cyklus som prevzala a zmenila podľa seba
         {
             if ((i<playerHealth)) { hearts[i].sprite = Heart; } else { hearts[i].sprite = EmptyHeart; }
             if (i<numOfHeartContainers) { hearts[i].enabled = true; } else { hearts[i].enabled = false; }

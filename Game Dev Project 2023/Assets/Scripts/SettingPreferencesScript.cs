@@ -10,8 +10,30 @@ public class SettingPreferencesScript : MonoBehaviour
     
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private float volume;  // this was used first time, now we can delete it since we are loading volume from playerPrefs
+    
 
     private int idScene;
+
+    public static SettingPreferencesScript instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            idScene = SceneManager.GetActiveScene().buildIndex;
+            if (idScene == 0 | idScene == 3)
+            {
+                if (gameObject.GetComponent<Slider>() == null) { DontDestroyOnLoad(gameObject); }
+            }
+        }
+        else
+        {
+            if (gameObject.GetComponent<Slider>() == null) { Destroy(gameObject); } // i know this is not ideal solution but I made it like that this script is also used by slider and I don't want slider to be destroyed
+        }
+        
+        
+    }
     
     
     // Start is called before the first frame update
@@ -41,10 +63,6 @@ public class SettingPreferencesScript : MonoBehaviour
 
     void Update()
     {
-        if (idScene == 3) // if we are in settings
-        {
-            //Load();
-        }
 
     }
     

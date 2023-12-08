@@ -1687,9 +1687,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGmusic
       objectReference: {fileID: 0}
+    - target: {fileID: 7000911919434972521, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9173159730485568985, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
       propertyPath: m_Volume
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173159730485568985, guid: 774dd8fadc05e6a46843fcae41aa7fea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
