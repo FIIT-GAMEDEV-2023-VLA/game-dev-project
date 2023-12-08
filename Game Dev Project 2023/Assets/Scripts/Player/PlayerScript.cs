@@ -24,10 +24,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private string torchSpawnZoneTag;
-
-    private Vector3 spawnPoint;
-    private Vector3 startingSpawnPoint;
-
+    
     private GameObject torchSpawnZonePath;
     
     // Input Axes
@@ -42,36 +39,19 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
-
-        GameObject startingSpawnPointGameObject = GameObject.FindGameObjectWithTag("SpawnPoint");
-        if (!startingSpawnPointGameObject)
-        {
-            startingSpawnPoint = transform.position;
-        }
-        else
-        {
-            startingSpawnPoint = startingSpawnPointGameObject.transform.position;
-        }
-
-        spawnPoint = startingSpawnPoint;
         
-        
-        int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
-        Debug.Log("Scene Build Index: " + idScene);
-        if (idScene==2)
-        {
-            SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
-            Data data = saveManager.LoadMyStuffPlease();
-            var x = data.positionX;
-            var y = data.positionY;
-            var z = data.positionZ;
-            
-            transform.position = new Vector3(x, y, z);
-        }
-        else
-        {
-            Spawn();
-        }
+        //int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
+        //Debug.Log("Scene Build Index: " + idScene);
+        //if (idScene==2)
+        //{
+        //    SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
+        //    Data data = saveManager.LoadMyStuffPlease();
+        //    var x = data.positionX;
+        //    var y = data.positionY;
+        //    var z = data.positionZ;
+        //    
+        //    transform.position = new Vector3(x, y, z);
+        //}
         
         isAlive = true;
         isInputLocked = false;
@@ -156,12 +136,12 @@ public class PlayerScript : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
     }
     
-    public void Spawn()
+    public void Spawn(Vector3 spawnPointPosition)
     {   
         isAlive = true;
         UnlockInput();
         animLight.Play("PlayerLight_Flickering");
-        transform.position = spawnPoint;
+        transform.position = spawnPointPosition;
     }
     
     public void Die()
