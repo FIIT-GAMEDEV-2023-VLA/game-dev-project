@@ -1,4 +1,6 @@
 // Author: Leonard Puškáč
+// The function called GetBounceVelocity was take from: https://discussions.unity.com/t/how-can-i-solve-ballistic-angle-and-velocity-to-hit-a-specific-point-after-a-specific-amount-of-time/179059/3
+
 using UnityEngine;
 
 public class TorchThrowScript : MonoBehaviour
@@ -8,6 +10,8 @@ public class TorchThrowScript : MonoBehaviour
     [SerializeField] private Animator anim;
 
     private CameraControllerScript cameraControllerScript;
+    private TorchPathScript torchPathScript;
+    private Transform pathContainerTransform;
     private float maxDepth = -100f;
     // Start is called before the first frame update
     void Start()
@@ -45,18 +49,21 @@ public class TorchThrowScript : MonoBehaviour
     {
         cameraControllerScript.MoveToPlayer();
         Destroy(gameObject);
+        torchPathScript.ResetTriggerPoints();
     }
 
     public void SetMaxDepth(float y)
     {
         maxDepth = y;
-        Debug.Log("Torch Max Depth Set To: " + y);
+    }
+
+    public void SetTorchPathScript(TorchPathScript script)
+    {
+        torchPathScript = script;
     }
 
     public void Bounce(Vector3 targetPos)
     {
-        Vector3 velocity = GetBounceVelocity(torchTransform.position, targetPos, 2.0f);
-        rb.velocity = velocity;
-        Debug.Log("Resulting Velocity: " + velocity);
+        rb.velocity = GetBounceVelocity(torchTransform.position, targetPos, 1.5f);
     }
 }

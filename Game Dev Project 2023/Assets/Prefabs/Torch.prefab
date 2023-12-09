@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5683294682767498809}
   m_Layer: 10
   m_Name: Torch
-  m_TagString: Untagged
+  m_TagString: Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torchTransform: {fileID: 4316360398644967618}
   rb: {fileID: 5683294682767498809}
-  cameraControllerScript: {fileID: 6632100886474214069, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
   anim: {fileID: 3431256550387725694}
 --- !u!50 &5683294682767498809
 Rigidbody2D:
