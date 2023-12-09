@@ -17,6 +17,7 @@ TagManager:
   - SafeZone
   - ResourceManager
   - Torch
+  - SpawnManager
   layers:
   - Default
   - TransparentFX

@@ -90,7 +90,10 @@ public class PlayerScript : MonoBehaviour
 
     public void CollideWithTrap()
     {
-        Die();
+        if (isAlive)
+        {
+            Die();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -123,6 +126,7 @@ public class PlayerScript : MonoBehaviour
         isAlive = true;
         UnlockInput();
         animLight.Play("PlayerLight_Flickering");
+        anim.Play("Player_Idle");
         transform.position = spawnPointPosition;
     }
     

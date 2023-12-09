@@ -1,25 +1,21 @@
 // Author: Leonard Puškáč
+
+using System;
 using UnityEngine;
 
 public class SafeZoneScript : MonoBehaviour
 {
 
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private SpawnManagerScript spawnManagerScript;
+    private SpawnManagerScript spawnManagerScript;
 
     private bool visited = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public Vector3 GetSpawnPointPosition()
     {
         return spawnPoint.transform.position;
@@ -46,7 +42,12 @@ public class SafeZoneScript : MonoBehaviour
             }
         }
     }
-    
+
+    public void ResetVisitedFlag()
+    {
+        visited = false;
+    }
+
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

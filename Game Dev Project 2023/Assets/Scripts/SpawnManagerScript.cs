@@ -6,7 +6,8 @@ public class SpawnManagerScript : MonoBehaviour
     private GameObject[] safeZones;
     private GameObject activeSafeZone;
     private GameObject startingSafeZone;
-    private PlayerScript playerScript; 
+    private PlayerScript playerScript;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,22 @@ public class SpawnManagerScript : MonoBehaviour
         }
     }
 
+    public void ResetGame()
+    {
+        SetActiveSafeZone(startingSafeZone);
+        ResetSafeZones();
+        SpawnPlayer();
+    }
+
+    private void ResetSafeZones()
+    {
+        foreach (var safeZone in safeZones)
+        {
+            SafeZoneScript safeZoneScript = safeZone.GetComponent<SafeZoneScript>();
+            safeZoneScript.ResetVisitedFlag();
+        }
+    }
+
     public void SetActiveSafeZone(GameObject safeZone)
     {
         if (activeSafeZone != safeZone)
@@ -49,11 +66,5 @@ public class SpawnManagerScript : MonoBehaviour
             Debug.Log("Setting activeSafeZone to: " + safeZone);
             activeSafeZone = safeZone;  
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

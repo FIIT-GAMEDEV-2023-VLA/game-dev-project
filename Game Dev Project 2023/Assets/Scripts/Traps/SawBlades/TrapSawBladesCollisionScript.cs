@@ -7,7 +7,6 @@ public class TrapSawBladesCollisionScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {   
-            Debug.Log("Saw Trap Triggered On Player!");
             other.gameObject.SendMessage("CollideWithTrap");
         }
     }

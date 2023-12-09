@@ -14,11 +14,13 @@ public class ResourceManagerScript : MonoBehaviour
     [SerializeField] private Image[] hearts;  // UI images v unity
     [SerializeField] private Sprite heartSprite;
     [SerializeField] private Sprite emptyHeartSprite;
-    
+
+    private SpawnManagerScript spawnManagerScript;
     //public GameObject gameOverScreen;
     
     void Start()
     {
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
         int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
         if (idScene==2)
         {
@@ -74,6 +76,12 @@ public class ResourceManagerScript : MonoBehaviour
             {
                 playerHealth = 0;
             }
+        }
+        
+        // TODO: add a condition for playerHealth == 0 and change the outcome to be resetgame
+        if (playerHealth >= 0)
+        {
+            spawnManagerScript.SpawnPlayer();
         }
         // toto až v player scripte, podmienka (v prípade že stratil 3 životy zavolá sa game over screen):
         // gameOverScreen.SetActive(true);

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed0dffaf1278154c9b2b7e39600613a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
+  playerHealth: 4
   playerMaxHealth: 4
   playerTorchCounter: 2
   torchCountText: {fileID: 0}
