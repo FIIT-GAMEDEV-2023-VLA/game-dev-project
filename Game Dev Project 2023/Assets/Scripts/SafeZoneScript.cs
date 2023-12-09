@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+// Author: Leonard Puškáč
 using UnityEngine;
 
 public class SafeZoneScript : MonoBehaviour

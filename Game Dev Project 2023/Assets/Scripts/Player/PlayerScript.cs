@@ -1,11 +1,5 @@
-//using System.Collections;
-//using System.Collections.Generic;
-
-using System;
-using Unity.VisualScripting;
+// Author: Leonard Puškáč
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {

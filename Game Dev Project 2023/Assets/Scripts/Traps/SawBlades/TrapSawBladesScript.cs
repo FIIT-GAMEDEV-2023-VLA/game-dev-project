@@ -1,3 +1,4 @@
+// Author: Leonard Puškáč
 using UnityEngine;
 
 public class TrapSawBladesScript : MonoBehaviour

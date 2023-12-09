@@ -1,7 +1,4 @@
-//using System.Collections;
-//using System.Collections.Generic;
-
-using System;
+// Author: Leonard Puškáč
 using UnityEngine;
 
 public class PlayerSlidingBehaviourScript : StateMachineBehaviour

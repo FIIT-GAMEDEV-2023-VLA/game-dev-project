@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+// Author: Leonard Puškáč
 using UnityEngine;
 
 public class PlayerDeathBehaviourScript : StateMachineBehaviour
