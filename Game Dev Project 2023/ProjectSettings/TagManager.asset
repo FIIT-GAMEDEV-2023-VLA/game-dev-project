@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Logic
   - ButtonManager
   - DelayManager
   - SceneManager
@@ -16,6 +15,7 @@ TagManager:
   - StartingSpawnPoint
   - SpawnPoint
   - SafeZone
+  - ResourceManager
   layers:
   - Default
   - TransparentFX

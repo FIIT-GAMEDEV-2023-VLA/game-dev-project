@@ -12,19 +12,20 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider2D;
     private Vector2 boxCollider2DOffset;
     private Vector2 boxCollider2DSize;
+    
     [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private string torchSpawnZoneTag;
-    
+
+    // Reference to the active torch spawn zone path 
     private GameObject torchSpawnZonePath;
-    
     // Input Axes
     private float horizontal;
     private float vertical;
-    
+    // Bool States
     private bool isInputLocked;
     private bool isFacingRight;
     private bool isAlive;
@@ -33,20 +34,7 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
-        
-        //int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
-        //Debug.Log("Scene Build Index: " + idScene);
-        //if (idScene==2)
-        //{
-        //    SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
-        //    Data data = saveManager.LoadMyStuffPlease();
-        //    var x = data.positionX;
-        //    var y = data.positionY;
-        //    var z = data.positionZ;
-        //    
-        //    transform.position = new Vector3(x, y, z);
-        //}
-        
+        // TODO: replace the save manager spawn functionality - do it in the spawn manager script 
         isAlive = true;
         isInputLocked = false;
         isFacingRight = true;
