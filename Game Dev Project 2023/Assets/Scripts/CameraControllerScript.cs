@@ -1,16 +1,23 @@
+// Author: Leonard Puškáč
 using UnityEngine;
 
 public class CameraControllerScript : MonoBehaviour
 {
-
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private float cameraMoveSpeed = 5f;
+    [SerializeField] private float unlockedCameraMoveSpeed = 15f;
     private bool isLocked;
+    
     private Transform moveTargetTransform;
-    private Transform lockedTargetTransform; 
+    private Transform lockedTargetTransform;
+    private Transform playerTransform;
+
+    private GameObject playerGameObject;
+    private PlayerScript playerScript;
     
     void Start()
     {
+        playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        playerScript = playerGameObject.GetComponent<PlayerScript>();
+        playerTransform = playerGameObject.transform;
         LockToPlayer();
         moveTargetTransform = playerTransform;
     }
@@ -36,12 +43,15 @@ public class CameraControllerScript : MonoBehaviour
         }
         else
         {
-            var step =  cameraMoveSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, moveTargetTransform.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, moveTargetTransform.position, unlockedCameraMoveSpeed * Time.deltaTime);
             
             if (Vector3.Distance(transform.position, moveTargetTransform.position) < 0.01f)
             {
                 LockToPlayer();
+            }
+            if (Vector3.Distance(transform.position, moveTargetTransform.position) < 10f)
+            {
+                playerScript.UnlockInput();
             }
         }
     }

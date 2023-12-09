@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+// Author: Leonard Puškáč
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using Transform = UnityEngine.Transform;
 
 
@@ -42,8 +39,10 @@ public class TorchPathCreatorScript : MonoBehaviour
                 if (child.GetSiblingIndex() < pathContainer.transform.childCount - 1)
                 {
                     Transform nextChild = pathContainer.transform.GetChild(child.GetSiblingIndex() + 1);
+                    Color prevColor = Gizmos.color;
                     Gizmos.color = Color.blue;
                     Gizmos.DrawLine(child.position, nextChild.position);
+                    Gizmos.color = prevColor;
                 }
             }
         }

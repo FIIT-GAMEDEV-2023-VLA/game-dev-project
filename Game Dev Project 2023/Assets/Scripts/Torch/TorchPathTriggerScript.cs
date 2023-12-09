@@ -1,4 +1,4 @@
-using System;
+// Author: Leonard Puškáč
 using UnityEngine;
 
 
@@ -13,7 +13,8 @@ public class TorchPathTriggerScript : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (!visited)
+        // IF THE OTHER OBJECT IS A TORCH, IF ITS PARENT IS THIS PATH, IF IS NOT VISITED
+        if (other.gameObject.CompareTag("Torch") && other.gameObject.transform.parent == transform.parent.transform.parent && !visited)
         {
             TorchThrowScript torchThrowScript = other.GetComponentInParent<TorchThrowScript>();
             if (!IsLastChild())
@@ -33,6 +34,11 @@ public class TorchPathTriggerScript : MonoBehaviour
     Vector3 GetNextCoords()
     {
         return transform.parent.transform.GetChild(transform.GetSiblingIndex() + 1).position;
+    }
+
+    public void ResetVisitedFlag()
+    {
+        visited = false;
     }
 
     private bool IsLastChild()

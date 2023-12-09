@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7226347361931482769}
   - component: {fileID: 8004966010059030233}
+  - component: {fileID: 5445448809765479259}
   m_Layer: 0
   m_Name: PlayerLight
   m_TagString: Untagged
@@ -101,8 +102,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360.00003
   m_PointLightOuterAngle: 360.00003
-  m_PointLightInnerRadius: 2.66
-  m_PointLightOuterRadius: 4.374266
+  m_PointLightInnerRadius: 3.5
+  m_PointLightOuterRadius: 6
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -113,6 +114,27 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!95 &5445448809765479259
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238147876794112382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a66e1d371d9df34cb898cd71ffae693, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2703814451107589114
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +228,7 @@ GameObject:
   - component: {fileID: 2356924974847270508}
   - component: {fileID: 6776941912337763460}
   - component: {fileID: 160645691197858326}
+  - component: {fileID: 3826955102674748583}
   m_Layer: 0
   m_Name: SpriteRendererContainer
   m_TagString: Untagged
@@ -301,6 +324,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3826955102674748583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281673399581236360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945ea31add0654d40ab7bca5f2a9c795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8124349017266492707
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +364,7 @@ Transform:
   m_GameObject: {fileID: 8124349017266492707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.9, y: -16.7, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -424,14 +459,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpingPower: 12
+  jumpingPower: 14
   slideForce: 5
+  moveSpeedModifier: 1
   rb: {fileID: 5775057737467237789}
+  boxCollider2D: {fileID: 7097017478656945166}
   groundCheck: {fileID: 8575126469657258272}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   anim: {fileID: 160645691197858326}
+  animLight: {fileID: 5445448809765479259}
   spriteRend: {fileID: 6776941912337763460}
-  playerLight2D: {fileID: 8004966010059030233}
   torchSpawnZoneTag: TorchSpawnZone

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -11,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class SaveManagerScript : MonoBehaviour
 {
     
-    public PlayerScript playerStats;
-    public LogicScript logicStats;
+    public PlayerScript playerScript;
+    public ResourceManagerScript resourceManagerScript;
     
     private int idScene;
     
@@ -23,8 +20,8 @@ public class SaveManagerScript : MonoBehaviour
         
         if (idScene != 0)  // if we are not in menu
         {
-            playerStats = GameObject.Find("Player").GetComponent<PlayerScript>(); 
-            logicStats = GameObject.Find("Logic Manager").GetComponent<LogicScript>(); 
+            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
+            resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>(); 
         }
         
     }
@@ -33,11 +30,11 @@ public class SaveManagerScript : MonoBehaviour
     {
         
         Data myData = new Data();  // just wrapped data for better saving
-        myData.positionX = playerStats.transform.position.x;
-        myData.positionY = playerStats.transform.position.y;
-        myData.positionZ = playerStats.transform.position.z;
-        myData.playerHealth = logicStats.playerHealth;
-        myData.playerTorchCounter = logicStats.playerTorchCounter;
+        myData.positionX = playerScript.transform.position.x;
+        myData.positionY = playerScript.transform.position.y;
+        myData.positionZ = playerScript.transform.position.z;
+        myData.playerHealth = resourceManagerScript.GetPlayerHealth();
+        myData.playerTorchCounter = resourceManagerScript.GetTorchCount();
 
         // this saving I have from tutorial!
         BinaryFormatter binaryFormatter = new BinaryFormatter();
