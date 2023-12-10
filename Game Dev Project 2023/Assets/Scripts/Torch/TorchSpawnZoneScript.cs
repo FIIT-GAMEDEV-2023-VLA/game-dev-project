@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+//Author: Leonard Puškáč
 using UnityEngine;
 
 public class TorchSpawnZoneScript : MonoBehaviour

@@ -1,4 +1,4 @@
-using System;
+//Author: Leonard Puškáč
 using UnityEngine;
 
 public class PlayerDeathAnimLoseLifeScript : MonoBehaviour
