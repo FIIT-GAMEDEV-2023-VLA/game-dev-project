@@ -288,6 +288,71 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &29813762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3639788232537603625, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310474969342417013, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_ShadowIntensityEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029985739638452735, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056036421096445794, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
+      propertyPath: m_Name
+      value: StandingTorch
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54b17dc53f259ad4a9cc85b5554a012a, type: 3}
 --- !u!1 &33428827
 GameObject:
   m_ObjectHideFlags: 0
@@ -29853,10 +29918,6 @@ PrefabInstance:
     - target: {fileID: 5276980929495980892, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 6632100886474214069, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
-      propertyPath: unlockedCameraMoveSpeed
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7268159630811684943, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83251,3 +83312,4 @@ SceneRoots:
   - {fileID: 704223204}
   - {fileID: 1391879918}
   - {fileID: 1031487156}
+  - {fileID: 29813762}
