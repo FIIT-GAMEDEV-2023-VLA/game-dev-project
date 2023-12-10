@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private string torchSpawnZoneTag;
 
+    private ResourceManagerScript resourceManagerScript;
     // Reference to the active torch spawn zone path 
     private GameObject torchSpawnZonePath;
     // Input Axes
@@ -43,6 +44,8 @@ public class PlayerScript : MonoBehaviour
 
         boxCollider2DOffset = boxCollider2D.offset;
         boxCollider2DSize = boxCollider2D.size;
+        
+        resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
         animLight.Play("PlayerLight_Flickering");
     }
 
@@ -67,10 +70,11 @@ public class PlayerScript : MonoBehaviour
                 anim.SetTrigger("slide");
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath)
+            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath && resourceManagerScript.GetTorchCount() > 0)
             {   
                 TorchPathScript torchPathScript = torchSpawnZonePath.GetComponent<TorchPathScript>(); 
                 torchPathScript.SpawnTorch(transform.position);
+                resourceManagerScript.RemoveTorch(1);
             }
         }
         if (isAlive)

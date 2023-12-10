@@ -12,6 +12,6 @@ public class PlayerDeathAnimLoseLifeScript : MonoBehaviour
 
     public void LoseLife()
     {
-        resourceManagerScript.loseLife(1);
+        resourceManagerScript.LoseLife(1);
     }
 }

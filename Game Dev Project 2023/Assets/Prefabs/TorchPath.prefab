@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6129574683298988192}
   - component: {fileID: 1128270949790789789}
+  - component: {fileID: 9041433606447864912}
   m_Layer: 11
   m_Name: TorchSpawnZone
   m_TagString: TorchSpawnZone
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &9041433606447864912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950583741959124716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f597940cc8884ad4b883fd1820d38552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4767036285982848740
 GameObject:
   m_ObjectHideFlags: 0
