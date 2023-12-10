@@ -6,14 +6,17 @@ using UnityEngine;
 public class SafeZoneScript : MonoBehaviour
 {
 
+    [SerializeField] private int TorchesToAdd = 2;
     [SerializeField] private Transform spawnPoint;
     private SpawnManagerScript spawnManagerScript;
+    private ResourceManagerScript resourceManagerScript;
 
     private bool visited = false;
 
     private void Start()
     {
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
+        resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
     }
 
     public Vector3 GetSpawnPointPosition()
@@ -38,6 +41,7 @@ public class SafeZoneScript : MonoBehaviour
             if (!visited)
             {
                 visited = true;
+                resourceManagerScript.AddTorch(TorchesToAdd);
                 spawnManagerScript.SetActiveSafeZone(gameObject);
             }
         }

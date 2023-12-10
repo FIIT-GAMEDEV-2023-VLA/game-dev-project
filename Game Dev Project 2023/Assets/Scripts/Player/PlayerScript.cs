@@ -106,7 +106,6 @@ public class PlayerScript : MonoBehaviour
         {
             torchSpawnZonePath = other.gameObject.transform.parent.gameObject;
             canThrowATorch = true;
-            Debug.Log("Player Entered a Torch Spawn Zone: "  + torchSpawnZonePath);
         }
     }
     
@@ -114,7 +113,6 @@ public class PlayerScript : MonoBehaviour
     {   
         if (other.gameObject.CompareTag(torchSpawnZoneTag))
         {
-            Debug.Log("Player Exited a Torch Spawn Zone" );
             canThrowATorch = false;
             torchSpawnZonePath = null;
         }

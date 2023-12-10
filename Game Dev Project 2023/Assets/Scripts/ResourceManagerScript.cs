@@ -8,8 +8,8 @@ public class ResourceManagerScript : MonoBehaviour
 {
     [SerializeField] private int playerHealth = 4;
     [SerializeField] private int playerMaxHealth = 4;
-    [SerializeField] private int playerTorchCounter = 2;
-    [SerializeField] private int playerStartingTorchCount = 2;
+    [SerializeField] private int playerStartingTorchCount = 0;
+    [SerializeField] private int playerTorchCounter = 0;
     
     [SerializeField] private Text torchCountText;
     [SerializeField] private Image[] hearts;  // UI images v unity
@@ -21,6 +21,7 @@ public class ResourceManagerScript : MonoBehaviour
     
     void Start()
     {
+        playerTorchCounter = playerStartingTorchCount;
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
         int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
         if (idScene==2)
