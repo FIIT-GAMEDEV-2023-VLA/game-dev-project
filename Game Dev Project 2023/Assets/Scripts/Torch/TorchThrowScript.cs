@@ -19,6 +19,7 @@ public class TorchThrowScript : MonoBehaviour
         cameraControllerScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControllerScript>();
         Debug.Log("Torch is Alive!");
         cameraControllerScript.LockTo(transform);
+        rb.AddTorque(Random.Range(-0.2f, 0.2f), ForceMode2D.Impulse);
     }
 
     public void Update()
