@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ec4494198e14243a0815cab54d631e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorClicked: {r: 1, g: 0.043137256, b: 0.13725491, a: 1}
-  colorUnclicked: {r: 1, g: 0.67058825, b: 0.20784315, a: 1}
-  colorHovered: {r: 0.8396226, g: 0.4904726, b: 0, a: 1}
-  colorSelected: {r: 0.18039216, g: 0.38431376, b: 0.5019608, a: 1}
-  colorHoveredSelected: {r: 0.08575116, g: 0.27665538, b: 0.38679248, a: 1}
-  buttonText: {fileID: 0}
+  buttons: []
+  imageClicked: []
+  imageUnclicked: []
+  imageHovered: []
+  imageSelected: []
+  imageHoveredSelected: []
+  buttonClickedSound: {fileID: 0}
