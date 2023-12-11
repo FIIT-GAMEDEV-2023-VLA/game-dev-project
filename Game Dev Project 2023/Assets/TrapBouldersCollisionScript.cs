@@ -1,32 +1,31 @@
-using System;
+// Author: Leonard Puškáč
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapBouldersCollisionScript : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float maxCollisionVelocityMagnitude = 2f;
-    [SerializeField] private float minBoulderVelocityMagnitude = 0.1f;
-    private bool isReleased = false;
+    [SerializeField] private float minCollisionVelocity = 2f;
+    [SerializeField] private float timeToLive = 20f;
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && rb.velocity.magnitude > maxCollisionVelocityMagnitude)
+        if (other.gameObject.CompareTag("Player") && rb.velocity.magnitude > minCollisionVelocity)
         {
             other.gameObject.SendMessage("CollideWithTrap");
             Debug.Log("Player collided with a fast Boulder! Oops!");
         }
     }
-    private void Update()
+    
+    public void Release()
     {
-        if (isReleased && rb.velocity.magnitude <= minBoulderVelocityMagnitude)
-        {
-            Destroy(gameObject);
-        }
+        StartCoroutine(DeathTimer());
     }
 
-    public void SetReleased()
+    private IEnumerator DeathTimer()
     {
-        isReleased = true;
+        yield return new WaitForSeconds(timeToLive);
+        Destroy(gameObject);
     }
 }
