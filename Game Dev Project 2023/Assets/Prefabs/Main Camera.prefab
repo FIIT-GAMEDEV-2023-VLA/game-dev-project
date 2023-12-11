@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5276980929495980892}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.33, y: 5.14, z: -9.63195}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,8 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fdaf0126afae14e84de3b6317a7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 6557137335026798101, guid: 375dc3e25dbb8b543aa96dbc87050480, type: 3}
-  cameraMoveSpeed: 15
+  unlockedCameraMoveSpeed: 25
 --- !u!114 &-7799040618416784639
 MonoBehaviour:
   m_ObjectHideFlags: 0

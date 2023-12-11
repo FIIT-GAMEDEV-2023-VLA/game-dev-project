@@ -44,8 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb21d63468bb50468e153efe53e56e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
-  logicStats: {fileID: 0}
-  position: {fileID: 0}
-  playerHealth: 0
-  playerTorchCounter: 0
+  playerScript: {fileID: 0}
+  resourceManagerScript: {fileID: 0}

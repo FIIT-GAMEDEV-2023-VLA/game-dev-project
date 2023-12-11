@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Logic
   - ButtonManager
   - DelayManager
   - SceneManager
@@ -12,7 +11,13 @@ TagManager:
   - SaveManager
   - TorchPathTrigger
   - TorchSpawnZone
-  - GameAudio
+  - TrapSawBlades
+  - StartingSpawnPoint
+  - SpawnPoint
+  - SafeZone
+  - ResourceManager
+  - Torch
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
@@ -27,8 +32,8 @@ TagManager:
   - TorchThrowable
   - TorchSpawZone
   - Player
-  - 
-  - 
+  - Traps
+  - Platform
   - 
   - 
   - 

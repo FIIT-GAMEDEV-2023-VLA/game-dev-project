@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4316360398644967618}
   - component: {fileID: 3336133989690929816}
-  - component: {fileID: 3431256550387725694}
   - component: {fileID: 7437283536487387444}
   - component: {fileID: 855619230315654504}
   - component: {fileID: 5683294682767498809}
+  - component: {fileID: 1174163352727389162}
   m_Layer: 10
   m_Name: Torch
-  m_TagString: Untagged
+  m_TagString: Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 553150527
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2027940740, guid: 8a6877efafc017047b0a8d63afaea455, type: 3}
+  m_Sprite: {fileID: 909591299, guid: 62a02fb41b88593498a00800265e5007, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,27 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3431256550387725694
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467106741034144048}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a21c88279df4ed4448ac4143731c659c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &7437283536487387444
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,8 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torchTransform: {fileID: 4316360398644967618}
   rb: {fileID: 5683294682767498809}
-  cameraControllerScript: {fileID: 6632100886474214069, guid: d4ce6f600e096b4428bfd121a378921a, type: 3}
-  anim: {fileID: 3431256550387725694}
+  anim: {fileID: 1174163352727389162}
 --- !u!50 &5683294682767498809
 Rigidbody2D:
   serializedVersion: 4
@@ -187,7 +165,28 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
+--- !u!95 &1174163352727389162
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467106741034144048}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a21c88279df4ed4448ac4143731c659c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7330294024165691425
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,8 +235,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.406
-  m_Color: {r: 0.6313726, g: 0.4039216, b: 0, a: 1}
-  m_Intensity: 2.6
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000004dbc282613716efe5baca266ad301ad43f68f820
@@ -258,8 +257,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 5.1653795
-  m_PointLightOuterRadius: 7.79
+  m_PointLightInnerRadius: 5
+  m_PointLightOuterRadius: 7.59
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

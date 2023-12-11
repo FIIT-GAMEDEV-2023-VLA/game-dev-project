@@ -1,31 +1,34 @@
-//using System.Collections;
-//using System.Collections.Generic;
-
-using System;
-using Unity.VisualScripting;
+// Author: Leonard Puškáč
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float horizontal;
-    private float vertical;
     public float moveSpeed = 5f;
     public float jumpingPower = 12f;
     public float slideForce = 5f;
-
-    //TODO: Find out if its better to use GetComponent in Start() instead of SerializeField
+    public float moveSpeedModifier = 1f;
+    public float groundCheckOverlapRadius = 0.3f;
+    
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private CapsuleCollider2D capsuleCollider2D;
+    private Vector2 capsuleCollider2DOffset;
+    private Vector2 capsuleCollider2DSize;
+    
     [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformsLayer;
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
-    [SerializeField] private Light2D playerLight2D;
     [SerializeField] private string torchSpawnZoneTag;
 
+    private ResourceManagerScript resourceManagerScript;
+    // Reference to the active torch spawn zone path 
     private GameObject torchSpawnZonePath;
-        
+    // Input Axes
+    private float horizontal;
+    private float vertical;
+    // Bool States
     private bool isInputLocked;
     private bool isFacingRight;
     private bool isAlive;
@@ -34,22 +37,18 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
-        int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
-        if (idScene==2)
-        {
-            SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
-            Data data = saveManager.LoadMyStuffPlease();
-            var x = data.positionX;
-            var y = data.positionY;
-            var z = data.positionZ;
-
-            transform.position = new Vector3(x, y, z);
-        }
+        // TODO: replace the save manager spawn functionality - do it in the spawn manager script 
+        isAlive = true;
         isInputLocked = false;
         isFacingRight = true;
-        isAlive = true;
         canThrowATorch = false;
         torchSpawnZonePath = null;
+
+        capsuleCollider2DOffset = capsuleCollider2D.offset;
+        capsuleCollider2DSize = capsuleCollider2D.size;
+        
+        resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
+        animLight.Play("PlayerLight_Flickering");
     }
 
     // Update is called once per frame
@@ -73,13 +72,11 @@ public class PlayerScript : MonoBehaviour
                 anim.SetTrigger("slide");
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath)
+            if (Input.GetKeyDown(KeyCode.E) && canThrowATorch && torchSpawnZonePath && resourceManagerScript.GetTorchCount() > 0)
             {   
-                Debug.Log("From Player - Spawning Torch!");
-
                 TorchPathScript torchPathScript = torchSpawnZonePath.GetComponent<TorchPathScript>(); 
                 torchPathScript.SpawnTorch(transform.position);
-
+                resourceManagerScript.RemoveTorch(1);
             }
         }
         if (isAlive)
@@ -93,13 +90,16 @@ public class PlayerScript : MonoBehaviour
     {
         if (!isInputLocked && isAlive)
         {
-            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * (moveSpeed * moveSpeedModifier), rb.velocity.y);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void CollideWithTrap()
     {
-        //Debug.Log("Collision!" );
+        if (isAlive)
+        {
+            Die();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -108,7 +108,6 @@ public class PlayerScript : MonoBehaviour
         {
             torchSpawnZonePath = other.gameObject.transform.parent.gameObject;
             canThrowATorch = true;
-            Debug.Log("Player Entered a Torch Spawn Zone: "  + torchSpawnZonePath);
         }
     }
     
@@ -116,7 +115,6 @@ public class PlayerScript : MonoBehaviour
     {   
         if (other.gameObject.CompareTag(torchSpawnZoneTag))
         {
-            Debug.Log("Player Exited a Torch Spawn Zone" );
             canThrowATorch = false;
             torchSpawnZonePath = null;
         }
@@ -124,13 +122,32 @@ public class PlayerScript : MonoBehaviour
     
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
+        if (Physics2D.OverlapCircle(groundCheck.position, groundCheckOverlapRadius, groundLayer) || 
+            Physics2D.OverlapCircle(groundCheck.position, groundCheckOverlapRadius, platformsLayer))
+        {
+            return true;
+        }
+        return false;
     }
-
+    
+    public void Spawn(Vector3 spawnPointPosition)
+    {   
+        isAlive = true;
+        UnlockInput();
+        animLight.Play("PlayerLight_Flickering");
+        anim.Play("Player_Idle");
+        transform.position = spawnPointPosition;
+    }
+    
     public void Die()
     {
-        anim.SetTrigger("death");
-        isAlive = false;
+        if (isAlive)
+        {
+            rb.velocity = Vector2.zero;
+            anim.SetTrigger("death");
+            animLight.SetTrigger("death");
+            isAlive = false;
+        }
     }
 
     private void UpdateAnimations(){
@@ -169,15 +186,30 @@ public class PlayerScript : MonoBehaviour
         anim.SetInteger("animState", (int)animState);
     }
 
+    public void SetMoveSpeedModifier(float modifier)
+    {
+        moveSpeedModifier = modifier;
+    }
+
+    public void SetSmallHitBox()
+    {
+        capsuleCollider2D.size = new Vector2(capsuleCollider2DSize.x, capsuleCollider2DSize.y / 2f);
+        capsuleCollider2D.offset = new Vector2(capsuleCollider2DOffset.x, capsuleCollider2DOffset.y - (capsuleCollider2DSize.y / 4f));
+    }
+
+    public void SetNormalHitBox()
+    {
+        capsuleCollider2D.size = capsuleCollider2DSize;
+        capsuleCollider2D.offset = capsuleCollider2DOffset;
+    }
+
     public void LockInput()
     {
-        //Debug.Log("Animations have been locked!");
         isInputLocked = true;
     }
 
     public void UnlockInput()
     {
-        //Debug.Log("Animations have been unlocked!");
         isInputLocked = false;
     }
 }
