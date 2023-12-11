@@ -18,18 +18,30 @@ public class SceneManagerScript : MonoBehaviour
 
     void Start()
     {
-        saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
+        idScene = SceneManager.GetActiveScene().buildIndex;
+        
+        if (idScene != 3) // if we are not in settings menu
+        {
+            saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
+        }
     }
 
     void Update()
     {
-        idScene = SceneManager.GetActiveScene().buildIndex;
 
-        if (idScene != 0)  // if we are not in menu
+        if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
         {
             if (Input.GetKeyDown(KeyCode.Escape))  // escape for returning to menu (all will be saved meanwhile)
             {
                 SaveScene();
+            }
+        }
+
+        if (idScene == 3)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))  // escape for returning to menu (all will be saved meanwhile)
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }

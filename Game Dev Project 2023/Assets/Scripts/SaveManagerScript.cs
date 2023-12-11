@@ -18,7 +18,7 @@ public class SaveManagerScript : MonoBehaviour
     {
         idScene = SceneManager.GetActiveScene().buildIndex;
         
-        if (idScene != 0)  // if we are not in menu
+        if (idScene != 0 & idScene != 3)  // if we are not in menu
         {
             playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
             resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>(); 
