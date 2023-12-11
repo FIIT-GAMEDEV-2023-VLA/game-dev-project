@@ -346,8 +346,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6557137335026798101}
   - component: {fileID: 5775057737467237789}
-  - component: {fileID: 7097017478656945166}
   - component: {fileID: 7911321060086312783}
+  - component: {fileID: 4592426832395594493}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -401,8 +401,37 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &7097017478656945166
-BoxCollider2D:
+--- !u!114 &7911321060086312783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8124349017266492707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ee6363b86ca634291cf933ff9e8016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpingPower: 14
+  slideForce: 5
+  moveSpeedModifier: 1
+  rb: {fileID: 5775057737467237789}
+  capsuleCollider2D: {fileID: 4592426832395594493}
+  groundCheck: {fileID: 8575126469657258272}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  platformsLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  anim: {fileID: 160645691197858326}
+  animLight: {fileID: 5445448809765479259}
+  spriteRend: {fileID: 6776941912337763460}
+  torchSpawnZoneTag: TorchSpawnZone
+--- !u!70 &4592426832395594493
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -434,41 +463,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.625, y: 5.625}
-    newSize: {x: 2.4, y: 3.9}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.8, y: 4.2}
-  m_EdgeRadius: 0
---- !u!114 &7911321060086312783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8124349017266492707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ee6363b86ca634291cf933ff9e8016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpingPower: 14
-  slideForce: 5
-  moveSpeedModifier: 1
-  rb: {fileID: 5775057737467237789}
-  boxCollider2D: {fileID: 7097017478656945166}
-  groundCheck: {fileID: 8575126469657258272}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  anim: {fileID: 160645691197858326}
-  animLight: {fileID: 5445448809765479259}
-  spriteRend: {fileID: 6776941912337763460}
-  torchSpawnZoneTag: TorchSpawnZone
+  m_Direction: 0

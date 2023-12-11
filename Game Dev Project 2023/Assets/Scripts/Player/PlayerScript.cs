@@ -7,14 +7,16 @@ public class PlayerScript : MonoBehaviour
     public float jumpingPower = 12f;
     public float slideForce = 5f;
     public float moveSpeedModifier = 1f;
+    public float groundCheckOverlapRadius = 0.3f;
     
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private BoxCollider2D boxCollider2D;
-    private Vector2 boxCollider2DOffset;
-    private Vector2 boxCollider2DSize;
+    [SerializeField] private CapsuleCollider2D capsuleCollider2D;
+    private Vector2 capsuleCollider2DOffset;
+    private Vector2 capsuleCollider2DSize;
     
     [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformsLayer;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
@@ -42,8 +44,8 @@ public class PlayerScript : MonoBehaviour
         canThrowATorch = false;
         torchSpawnZonePath = null;
 
-        boxCollider2DOffset = boxCollider2D.offset;
-        boxCollider2DSize = boxCollider2D.size;
+        capsuleCollider2DOffset = capsuleCollider2D.offset;
+        capsuleCollider2DSize = capsuleCollider2D.size;
         
         resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
         animLight.Play("PlayerLight_Flickering");
@@ -120,7 +122,12 @@ public class PlayerScript : MonoBehaviour
     
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
+        if (Physics2D.OverlapCircle(groundCheck.position, groundCheckOverlapRadius, groundLayer) || 
+            Physics2D.OverlapCircle(groundCheck.position, groundCheckOverlapRadius, platformsLayer))
+        {
+            return true;
+        }
+        return false;
     }
     
     public void Spawn(Vector3 spawnPointPosition)
@@ -186,14 +193,14 @@ public class PlayerScript : MonoBehaviour
 
     public void SetSmallHitBox()
     {
-        boxCollider2D.size = new Vector2(boxCollider2DSize.x, boxCollider2DSize.y / 2f);
-        boxCollider2D.offset = new Vector2(boxCollider2DOffset.x, boxCollider2DOffset.y - (boxCollider2DSize.y / 4f));
+        capsuleCollider2D.size = new Vector2(capsuleCollider2DSize.x, capsuleCollider2DSize.y / 2f);
+        capsuleCollider2D.offset = new Vector2(capsuleCollider2DOffset.x, capsuleCollider2DOffset.y - (capsuleCollider2DSize.y / 4f));
     }
 
     public void SetNormalHitBox()
     {
-        boxCollider2D.size = boxCollider2DSize;
-        boxCollider2D.offset = boxCollider2DOffset;
+        capsuleCollider2D.size = capsuleCollider2DSize;
+        capsuleCollider2D.offset = capsuleCollider2DOffset;
     }
 
     public void LockInput()
