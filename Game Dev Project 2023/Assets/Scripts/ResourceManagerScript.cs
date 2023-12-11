@@ -8,7 +8,8 @@ public class ResourceManagerScript : MonoBehaviour
 {
     [SerializeField] private int playerHealth = 4;
     [SerializeField] private int playerMaxHealth = 4;
-    [SerializeField] private int playerTorchCounter = 2;
+    [SerializeField] private int playerStartingTorchCount = 0;
+    [SerializeField] private int playerTorchCounter = 0;
     
     [SerializeField] private Text torchCountText;
     [SerializeField] private Image[] hearts;  // UI images v unity
@@ -20,6 +21,7 @@ public class ResourceManagerScript : MonoBehaviour
     
     void Start()
     {
+        playerTorchCounter = playerStartingTorchCount;
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
         int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
         if (idScene==2)
@@ -48,18 +50,18 @@ public class ResourceManagerScript : MonoBehaviour
         torchCountText.text = "Torches: " + playerTorchCounter;
     }
 
-    public void addTorch(int torchesToAdd)
+    public void AddTorch(int torchesToAdd)
     {
         playerTorchCounter += torchesToAdd;
         //torchCountText.text = "Torches: " + playerTorchCounter.ToString();
     }
-    public void removeTorch(int torchesToRemove)
+    public void RemoveTorch(int torchesToRemove)
     {
         playerTorchCounter -= torchesToRemove;
         //torchCountText.text = "Torches: " + playerTorchCounter.ToString();
     }
 
-    public void addLife(int lifeToAdd)  // if healing, then call this
+    public void AddLife(int lifeToAdd)
     {
         if (playerHealth + lifeToAdd <= playerMaxHealth)
         {
@@ -67,7 +69,7 @@ public class ResourceManagerScript : MonoBehaviour
         }
     }
 
-    public void loseLife(int lifeToLose)  // if :cc ouch then call this function
+    public void LoseLife(int lifeToLose)
     {
         if (playerHealth > 0)
         {
@@ -78,27 +80,26 @@ public class ResourceManagerScript : MonoBehaviour
             }
         }
         
-        // TODO: add a condition for playerHealth == 0 and change the outcome to be resetgame
-        if (playerHealth >= 0)
+        // CHECK IF THE GAME HAS ENDED - 0 HEALTH = RESET GAME 
+        if (playerHealth > 0)
         {
             spawnManagerScript.SpawnPlayer();
         }
-        // toto až v player scripte, podmienka (v prípade že stratil 3 životy zavolá sa game over screen):
-        // gameOverScreen.SetActive(true);
+        else
+        {
+            // TODO: ADD GAME OVER SCREEN WITH A "CONTINUE" BUTTON
+            // RESET RESOURCES AND RESPAWN AT THE START
+            ResetResources();
+            spawnManagerScript.ResetGame();
+        }
     }
-
-    public void restartGame()  // ešte spravím
+    
+    private void ResetResources()
     {
-        //gameOverScreen.SetActive(false);
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // zavolám konkrétnu scénu
+        playerHealth = playerMaxHealth;
+        playerTorchCounter = playerStartingTorchCount; 
     }
-
-    public void gameOver()  // bude volané z player script
-    {
-        //gameOverScreen.SetActive(true);  // odkomentujem až to doimplementujem
-    }
-
+    
     public int GetPlayerHealth()
     {
         return playerHealth;

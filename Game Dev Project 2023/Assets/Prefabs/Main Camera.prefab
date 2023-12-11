@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fdaf0126afae14e84de3b6317a7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedCameraMoveSpeed: 15
+  unlockedCameraMoveSpeed: 25
 --- !u!114 &-7799040618416784639
 MonoBehaviour:
   m_ObjectHideFlags: 0

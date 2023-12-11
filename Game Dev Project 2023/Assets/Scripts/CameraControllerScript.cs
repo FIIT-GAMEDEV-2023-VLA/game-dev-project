@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraControllerScript : MonoBehaviour
 {
-    [SerializeField] private float unlockedCameraMoveSpeed = 15f;
+    [SerializeField] private float unlockedCameraMoveSpeed = 25f;
     private bool isLocked;
     
     private Transform moveTargetTransform;

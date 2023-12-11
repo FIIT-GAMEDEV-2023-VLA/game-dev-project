@@ -19,6 +19,7 @@ public class TorchThrowScript : MonoBehaviour
         cameraControllerScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControllerScript>();
         Debug.Log("Torch is Alive!");
         cameraControllerScript.LockTo(transform);
+        rb.AddTorque(Random.Range(-0.2f, 0.2f), ForceMode2D.Impulse);
     }
 
     public void Update()
@@ -64,6 +65,11 @@ public class TorchThrowScript : MonoBehaviour
 
     public void Bounce(Vector3 targetPos)
     {
+        rb.angularVelocity = 0f;
         rb.velocity = GetBounceVelocity(torchTransform.position, targetPos, 1.5f);
+        float dirX = torchTransform.position.x - targetPos.x;
+        float torqueMulti = dirX > 0f ? 1 : -1;
+        float torque = Random.Range(1f, 2.5f);
+        rb.AddTorque(torque * torqueMulti, ForceMode2D.Impulse);
     }
 }
