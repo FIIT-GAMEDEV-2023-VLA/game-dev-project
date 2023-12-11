@@ -12,6 +12,7 @@ TagManager:
   - SaveManager
   - TorchPathTrigger
   - TorchSpawnZone
+  - GameAudio
   layers:
   - Default
   - TransparentFX
