@@ -1251,7 +1251,7 @@ PrefabInstance:
     - target: {fileID: 1990769090196791808, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: buttonBehavior
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 857083176}
     - target: {fileID: 1990769090196791808, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: colorBeforeHover.a
       value: 1
@@ -1363,7 +1363,7 @@ PrefabInstance:
     - target: {fileID: 3864898268076090006, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: buttonBehavior
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 857083176}
     - target: {fileID: 3864898268076090006, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: colorBeforeHover.a
       value: 1
@@ -1675,7 +1675,7 @@ PrefabInstance:
     - target: {fileID: 8878784009201420163, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: buttonBehavior
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 857083176}
     - target: {fileID: 8878784009201420163, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: colorBeforeHover.a
       value: 1

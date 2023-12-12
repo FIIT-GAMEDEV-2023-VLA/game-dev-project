@@ -13,7 +13,8 @@ public class LevelScreenLoader : MonoBehaviour
 {
     private int idScene;
 
-    public Animator crossSceneTransition;
+    //public Animator crossSceneTransition;
+    public Animator beginningStoryTransition;
     
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,8 @@ public class LevelScreenLoader : MonoBehaviour
         {
             if (idScene == 1 | idScene == 2)
             {
-                crossSceneTransition.SetTrigger("StartCrossSceneAnimation");
+                beginningStoryTransition.SetTrigger("StartStory");
+                //crossSceneTransition.SetTrigger("StartCrossSceneAnimation");
             }
             
         }
