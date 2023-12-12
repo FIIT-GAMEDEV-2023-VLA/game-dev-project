@@ -12,6 +12,9 @@ public class CameraControllerScript : MonoBehaviour
 
     private GameObject playerGameObject;
     private PlayerScript playerScript;
+
+    private float shakeTime = 0f;
+    private float shakeAmount = 0.5f;
     
     void Start()
     {
@@ -40,6 +43,16 @@ public class CameraControllerScript : MonoBehaviour
         {   
             Vector3 lockedTargetPosition = lockedTargetTransform.position;
             transform.position = new Vector3(lockedTargetPosition.x, lockedTargetPosition.y, lockedTargetPosition.z);
+            
+            // SCREEN SHAKE
+            if (shakeTime > 0f) {
+                Vector3 shakeOffset = (Random.insideUnitCircle * shakeAmount);
+                transform.position += shakeOffset;
+                shakeTime -= Time.deltaTime;
+ 
+            } else {
+                shakeTime = 0.0f;
+            }
         }
         else
         {
@@ -49,7 +62,7 @@ public class CameraControllerScript : MonoBehaviour
             {
                 LockToPlayer();
             }
-            if (Vector3.Distance(transform.position, moveTargetTransform.position) < 10f)
+            if (Vector3.Distance(transform.position, moveTargetTransform.position) < 3f)
             {
                 playerScript.UnlockInput();
             }
@@ -60,5 +73,11 @@ public class CameraControllerScript : MonoBehaviour
     {
         isLocked = false;
         moveTargetTransform = playerTransform;
+    }
+
+    public void ShakeCamera(float t, float intensity)
+    {
+        shakeTime = t;
+        shakeAmount = intensity;
     }
 }

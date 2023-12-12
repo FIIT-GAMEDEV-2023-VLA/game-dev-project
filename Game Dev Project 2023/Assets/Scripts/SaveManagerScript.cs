@@ -59,9 +59,7 @@ public class SaveManagerScript : MonoBehaviour
 
         return null;
     }
-    
 }
-
 
 [System.Serializable] public class Data  // in this format I will be saving my game data
 {
