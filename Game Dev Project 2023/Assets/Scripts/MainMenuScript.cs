@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -143,8 +144,14 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         
         Invoke("LoadSettingseScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
-    
-    public void QuitGame(){}
+
+    public void QuitGame()
+    {
+        wasClicked = true; // for better UX I explained it up ^
+        imagesInMenu[3] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[3], 3); // button clicked color
+        
+        Invoke("MyQuit",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+    }
 
 
 
@@ -162,9 +169,18 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         SceneManager.LoadScene(3);
     }
-    
-    
-    
+
+    public void MyQuit()
+    {
+        //if (UNITY_EDITOR) {UnityEditor.EditorApplication.isPlaying = false;} else { Application.Quit(); }
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+
     public void OnPointerEnter(PointerEventData eventData)  // function will run whenever cursor colides with object
     {
         GameObject enteredObject = eventData.pointerEnter;
