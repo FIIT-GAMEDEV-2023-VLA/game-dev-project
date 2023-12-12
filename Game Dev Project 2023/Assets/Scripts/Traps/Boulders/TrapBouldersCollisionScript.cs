@@ -6,8 +6,8 @@ using UnityEngine;
 public class TrapBouldersCollisionScript : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float minCollisionVelocity = 2f;
-    [SerializeField] private float timeToLive = 20f;
+    private float minCollisionVelocity = 1f;
+    private float timeToLive = 15;
     
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -18,11 +18,12 @@ public class TrapBouldersCollisionScript : MonoBehaviour
         }
     }
     
-    public void Release()
+    public void Release(float bTimeToLive, float bMinCollisionVelocity)
     {
+        timeToLive = bTimeToLive;
+        minCollisionVelocity = bMinCollisionVelocity;
         StartCoroutine(DeathTimer());
     }
-
     private IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(timeToLive);

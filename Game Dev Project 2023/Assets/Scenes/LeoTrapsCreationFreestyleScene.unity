@@ -243,6 +243,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &320699974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6815406746683288238, guid: 8a765265dc4b63b4d818aa449ecb236f, type: 3}
+  m_PrefabInstance: {fileID: 822396770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f335f4bc359da86438c15dd697dbb3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &338973034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6557137335026798101, guid: 375dc3e25dbb8b543aa96dbc87050480, type: 3}
@@ -386,6 +397,10 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7918372568616722823, guid: 8a765265dc4b63b4d818aa449ecb236f, type: 3}
+      propertyPath: trapBouldersScript
+      value: 
+      objectReference: {fileID: 320699974}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

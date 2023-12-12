@@ -1,23 +1,28 @@
 // Author: Leonard Puškáč
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class TrapBouldersScript : MonoBehaviour
 {
 
     [SerializeField] private EdgeCollider2D edgeCollider2D;
-    [SerializeField] private TrapBouldersTriggerZoneScript trapBouldersTriggerZoneScript;
-    [SerializeField] private Transform boulderContainerTransform;
+    [SerializeField] private GameObject triggerZone;
     [SerializeField] private GameObject boulderPrefab;
+    [SerializeField] private Transform boulderContainerTransform;
 
     private List<Vector3> startingBoulderPositions;
     private List<Vector3> startingBoulderScales;
+    private TrapBouldersTriggerZoneScript triggerZoneScript;
     
     private void Start()
     {
+        triggerZoneScript = triggerZone.GetComponent<TrapBouldersTriggerZoneScript>();
+        
+        startingBoulderPositions = new List<Vector3>();
+        startingBoulderScales = new List<Vector3>();
         // LOAD boulder transforms
         foreach (Transform child in boulderContainerTransform)
         {
@@ -27,8 +32,9 @@ public class TrapBouldersScript : MonoBehaviour
     }
 
     public void ResetTrap()
-    {
-        trapBouldersTriggerZoneScript.ResetFlag();
+    {   
+        Debug.Log("Resetting Boulder Trap!");
+        triggerZoneScript.ResetFlag();
         if (!edgeCollider2D.enabled)
         {
             SpawnBoulders();

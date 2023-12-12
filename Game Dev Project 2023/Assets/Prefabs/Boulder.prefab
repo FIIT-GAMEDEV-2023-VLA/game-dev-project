@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8110420982724356688}
-  minCollisionVelocity: 2
-  timeToLive: 20
+  minCollisionVelocity: 1
+  timeToLive: 15
