@@ -285,7 +285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   volume: 0.26
-  BGmusic: {fileID: 283379942}
 --- !u!82 &283379946
 AudioSource:
   m_ObjectHideFlags: 0
