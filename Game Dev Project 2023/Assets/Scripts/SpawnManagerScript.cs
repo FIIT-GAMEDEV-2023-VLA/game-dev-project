@@ -7,11 +7,14 @@ public class SpawnManagerScript : MonoBehaviour
     private GameObject activeSafeZone;
     private GameObject startingSafeZone;
     private PlayerScript playerScript;
+
+    private Vector3 originalStartingPlayerPosition; 
     
     // Start is called before the first frame update
     void Start()
     {
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        originalStartingPlayerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
         safeZones = GameObject.FindGameObjectsWithTag("SafeZone");
         if (safeZones.Length > 0)
         {
@@ -38,8 +41,17 @@ public class SpawnManagerScript : MonoBehaviour
     {
         if (playerScript)
         {
+            if (activeSafeZone)
+            {
+                playerScript.Spawn(activeSafeZone.GetComponent<SafeZoneScript>().GetSpawnPointPosition());
+            }
+            else
+            {
+                playerScript.Spawn(originalStartingPlayerPosition);
+            }
+
             Debug.Log("Spawn Manager is spawning the player!");
-            playerScript.Spawn(activeSafeZone.GetComponent<SafeZoneScript>().GetSpawnPointPosition());
+            
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class SafeZoneScript : MonoBehaviour
 {
 
-    [SerializeField] private int TorchesToAdd = 2;
+    [SerializeField] private int torchesToAdd = 2;
     [SerializeField] private Transform spawnPoint;
     private SpawnManagerScript spawnManagerScript;
     private ResourceManagerScript resourceManagerScript;
@@ -41,7 +41,7 @@ public class SafeZoneScript : MonoBehaviour
             if (!visited)
             {
                 visited = true;
-                resourceManagerScript.AddTorch(TorchesToAdd);
+                resourceManagerScript.AddTorch(torchesToAdd);
                 spawnManagerScript.SetActiveSafeZone(gameObject);
             }
         }
