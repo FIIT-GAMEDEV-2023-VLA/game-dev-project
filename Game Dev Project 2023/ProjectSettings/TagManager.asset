@@ -18,6 +18,8 @@ TagManager:
   - ResourceManager
   - Torch
   - SpawnManager
+  - PauseMenu
+  - ButtonManagerPauseMenu
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,8 @@ public class SceneManagerScript : MonoBehaviour
     private Data data;
     public SaveManagerScript saveManager;
     
+    public GameObject pauseMenu;
+    
 
     void Start()
     {
@@ -24,6 +26,11 @@ public class SceneManagerScript : MonoBehaviour
         {
             saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
         }
+        
+        if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
+        {
+            pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        }
     }
 
     void Update()
@@ -31,9 +38,22 @@ public class SceneManagerScript : MonoBehaviour
 
         if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
         {
-            if (Input.GetKeyDown(KeyCode.Escape))  // escape for returning to menu (all will be saved meanwhile)
+            if (Input.GetKeyDown(KeyCode.Escape) & (pauseMenu.activeSelf==false))  // escape for returning to menu (all will be saved meanwhile)
             {
-                SaveScene();
+                pauseMenu.SetActive(true);
+                
+                
+                
+                // pause all in game here!
+                
+                // TODO: ADD pausing game (so all traps and everything is paused)
+                
+                //...
+                
+                
+                
+                
+                //SaveScene();  // this will be in pause menu script not here
             }
         }
 
@@ -44,6 +64,7 @@ public class SceneManagerScript : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
+        
     }
     
     public void LoadLastSavedScene()

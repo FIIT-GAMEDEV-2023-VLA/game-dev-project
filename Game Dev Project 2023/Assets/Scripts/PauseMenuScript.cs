@@ -34,12 +34,15 @@ public class PauseMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private int previousIndex = 0;
 
     private bool wasClicked = false; // just for better UX cause there were this problem that after cliked button with mouse and exiting it, color was changed back to normal (because of unhover)
+
+    [SerializeField] public GameObject thisPauseMenu;
     
 
     void Start()  // loading some stuff for scene
     {
-        buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonBehaviorScript>();  // load of buttonBehavior script
+        buttonBehavior = GameObject.FindGameObjectWithTag("ButtonManagerPauseMenu").GetComponent<ButtonBehaviorScript>();  // load of buttonBehavior script
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerScript>();  // load of scene manager script
+        thisPauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         
         buttonsInMenu = new Button[3];  // I need to load some texts and buttons (editor in unity will not solve this for me)
         imagesInMenu = new Image[3];
@@ -108,64 +111,63 @@ public class PauseMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         
     }
-
-    public void NewGame()  // after choosing New Game option in menu
-    {
-        wasClicked = true; // for better UX I explained it up ^
-        imagesInMenu[0] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[0], 0); // button clicked color
-        
-        Invoke("LoadNewGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
-    }
+    
 
     public void ContinueGame()
     {
         wasClicked = true; // for better UX I explained it up ^
-        imagesInMenu[1] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[1], 1); // button clicked color
+        imagesInMenu[0] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[0], 0); // button clicked color
         
-        Invoke("LoadSavedGameScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+        Invoke("ContinueScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
 
     public void SetSettings()
     {
         wasClicked = true; // for better UX I explained it up ^
-        imagesInMenu[2] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[2], 2); // button clicked color
+        imagesInMenu[1] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[1], 1); // button clicked color
         
-        Invoke("LoadSettingseScene",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+        Invoke("LoadSettingsCanvas",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
 
-    public void QuitGame()
+    public void SaveAndExitGame()
     {
         wasClicked = true; // for better UX I explained it up ^
-        imagesInMenu[3] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[3], 3); // button clicked color
+        imagesInMenu[2] = buttonBehavior.ChangeOfColorClickedButton(imagesInMenu[2], 2); // button clicked color
         
-        Invoke("MyQuit",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
+        Invoke("SaveAndExit",delayBetweenChangedScene);  // we will wait a while before changing scene (so buttons seems responsive)
     }
 
 
 
-    public void LoadNewGameScene()  // just function to change scene
+    
+    public void ContinueScene()  // just function to continue game
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        imagesInMenu[0] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[0], 0); 
+        
+        
+        // TODO: ADD end of pause (of game)
+        
+        // ...
+        
+        
+        thisPauseMenu.SetActive(false);
     }
     
-    public void LoadSavedGameScene()  // just function to change scene
+    public void LoadSettingsCanvas()  // settings canva will be displayed
     {
-        sceneManager.LoadLastSavedScene();
-    }
-    
-    public void LoadSettingseScene()  // just function to change scene
-    {
-        SceneManager.LoadScene(3);
+        // here I will activate settings canvas
+        
+        
+        
+        //... (TO DO)
+        
+        
+        imagesInMenu[1] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[1], 1); 
     }
 
-    public void MyQuit()
+    public void SaveAndExit()
     {
-        //if (UNITY_EDITOR) {UnityEditor.EditorApplication.isPlaying = false;} else { Application.Quit(); }
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        sceneManager.SaveScene();
     }
 
 
@@ -221,13 +223,6 @@ public class PauseMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     
