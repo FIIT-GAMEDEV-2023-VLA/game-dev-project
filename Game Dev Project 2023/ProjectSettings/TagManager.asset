@@ -20,6 +20,7 @@ TagManager:
   - SpawnManager
   - PauseMenu
   - ButtonManagerPauseMenu
+  - Hidden
   layers:
   - Default
   - TransparentFX

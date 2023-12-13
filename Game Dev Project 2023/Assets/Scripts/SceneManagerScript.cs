@@ -15,7 +15,9 @@ public class SceneManagerScript : MonoBehaviour
     private Data data;
     public SaveManagerScript saveManager;
     
-    public GameObject pauseMenu;
+    public GameObject HiddenPauseMenu;
+    public GameObject HiddenSettingsMenu;
+    public GameObject hiddenObjects;
     
 
     void Start()
@@ -29,7 +31,9 @@ public class SceneManagerScript : MonoBehaviour
         
         if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
         {
-            pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+            hiddenObjects = GameObject.FindGameObjectWithTag("Hidden");
+            HiddenPauseMenu = hiddenObjects.transform.Find("PauseMenuObject")?.gameObject; // I tried to find object which was not active, but this is working
+            HiddenSettingsMenu = hiddenObjects.transform.Find("GameSettingsPauseMenu")?.gameObject;
         }
     }
 
@@ -38,15 +42,15 @@ public class SceneManagerScript : MonoBehaviour
 
         if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
         {
-            if (Input.GetKeyDown(KeyCode.Escape) & (pauseMenu.activeSelf==false))  // escape for returning to menu (all will be saved meanwhile)
+            if (Input.GetKeyDown(KeyCode.Escape) & (HiddenPauseMenu.activeSelf==false))  // escape for returning to menu (all will be saved meanwhile)
             {
-                pauseMenu.SetActive(true);
+                HiddenPauseMenu.SetActive(true);
                 
                 
                 
                 // pause all in game here!
                 
-                // TODO: ADD pausing game (so all traps and everything is paused)
+                // TODO: ADD pausing game (so all traps and everything is paused)  also hide UI
                 
                 //...
                 
@@ -55,6 +59,12 @@ public class SceneManagerScript : MonoBehaviour
                 
                 //SaveScene();  // this will be in pause menu script not here
             }
+            
+            if (Input.GetKeyDown(KeyCode.Escape) & (HiddenSettingsMenu.activeSelf==true))  // escape for returning to menu (all will be saved meanwhile)
+            {
+                HiddenSettingsMenu.SetActive(false);
+            }
+            
         }
 
         if (idScene == 3)
@@ -88,6 +98,14 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
 
     }
+
+
+
+    public void ShowHiddenSettingsMenu()  // only in pause menu (in game)
+    {
+        HiddenSettingsMenu.SetActive(true);
+    }
+    
     
     
 }

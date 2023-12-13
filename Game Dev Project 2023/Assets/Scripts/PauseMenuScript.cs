@@ -160,6 +160,7 @@ public class PauseMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
         
         
         //... (TO DO)
+        sceneManager.ShowHiddenSettingsMenu();
         
         
         imagesInMenu[1] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[1], 1); 
