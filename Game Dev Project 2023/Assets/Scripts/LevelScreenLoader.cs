@@ -4,11 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Arisu (this script is for better UX, since it just looks better when game screen does not shows up from nowhere)
+// could do it with enumerator and stuff so screen is blocked in time when animation is played but since animation is so short I will let it how it is
+
+// I know it would be better to call this in scene manager script (maybe I will redo it later)
+
 public class LevelScreenLoader : MonoBehaviour
 {
     private int idScene;
 
-    public Animator crossSceneTransition;
+    //public Animator crossSceneTransition;
+    public Animator beginningStoryTransition;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +24,7 @@ public class LevelScreenLoader : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()  
     {
         int oldId = idScene;
         idScene = SceneManager.GetActiveScene().buildIndex;  // I want to change songs between scenes
@@ -27,7 +33,8 @@ public class LevelScreenLoader : MonoBehaviour
         {
             if (idScene == 1 | idScene == 2)
             {
-                crossSceneTransition.SetTrigger("StartCrossSceneAnimation");
+                beginningStoryTransition.SetTrigger("StartStory");
+                //crossSceneTransition.SetTrigger("StartCrossSceneAnimation");
             }
             
         }

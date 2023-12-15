@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// Arisu
+// Object with this script as component will be left across all scenes (just music is changing)
+// Audios is not our original but since we do not pubish this game it should be allright
+
 public class SettingPreferencesScript : MonoBehaviour
 {
     
