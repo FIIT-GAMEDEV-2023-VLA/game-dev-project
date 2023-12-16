@@ -20,6 +20,8 @@ public class TrapBouldersTriggerZoneScript : MonoBehaviour
     private TrapBouldersScript trapBouldersScript;
     private CameraControllerScript cameraControllerScript;
 
+    [SerializeField] private AudioSource soundEffect;
+
     private void Start()
     {
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -41,6 +43,8 @@ public class TrapBouldersTriggerZoneScript : MonoBehaviour
             {
                 cameraControllerScript.ShakeCamera(screenShakeTime, screenShakeAmount);
             }
+            
+            soundEffect.Play();
 
             StartCoroutine(ReleaseBoulders());
             StartCoroutine(TrapResetTimer());
