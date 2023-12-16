@@ -365,7 +365,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.9, y: -16.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7226347361931482769}
@@ -417,6 +417,7 @@ MonoBehaviour:
   jumpingPower: 14
   slideForce: 5
   moveSpeedModifier: 1
+  groundCheckOverlapRadius: 0.3
   rb: {fileID: 5775057737467237789}
   capsuleCollider2D: {fileID: 4592426832395594493}
   groundCheck: {fileID: 8575126469657258272}
