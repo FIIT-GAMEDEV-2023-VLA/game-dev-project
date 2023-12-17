@@ -129,23 +129,8 @@ public class GameOverMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void LoadNewGame()  // to new game
     {
-        
-        // TODO 1: Leo ADD functionality to load game from beginning or call your function from other script from here
-        
-        // TODO 2: set enable on false (for this canvas)
-        
-        
-        // ...
-        // ...
-        // ...
-        
-        
-        
-        // TODO 3: call ladlevel animation!!!!!!!!!
-        
-        
-        imagesInMenu[0] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[0], 0); // just setting buttons to default appearance
-        
+        //imagesInMenu[0] = buttonBehavior.ChangeOfColorSelectedButton(imagesInMenu[0], 0); // just setting buttons to default appearance
+        SceneManager.LoadScene(1); // TODO: 
     }
     
     public void QuitAndReturn()  // just function to change scene
