@@ -10,6 +10,7 @@ public class SaveManagerScript : MonoBehaviour
     
     public PlayerScript playerScript;
     public ResourceManagerScript resourceManagerScript;
+    public SpawnManagerScript spawnManagerScript;
     
     private int idScene;
     
@@ -19,9 +20,22 @@ public class SaveManagerScript : MonoBehaviour
         idScene = SceneManager.GetActiveScene().buildIndex;
         
         if (idScene != 0 & idScene != 3)  // if we are not in menu
-        {
+        {   
             playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
-            resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>(); 
+            resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
+            spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
+            GameObject saveMessageGameObject = GameObject.Find("SaveMessagePassBohuzial");
+            if (saveMessageGameObject)
+            {
+                SaveMessagePassScript saveMessagePassScript = saveMessageGameObject.GetComponent<SaveMessagePassScript>();
+                if (saveMessagePassScript.IsContinued())
+                {
+                    Data savedData = LoadMyStuffPlease();
+                    resourceManagerScript.LoadSavedResources(savedData);
+                    spawnManagerScript.LoadSavedGameSpawn(savedData);
+                    
+                }
+            }
         }
         
     }
@@ -35,7 +49,8 @@ public class SaveManagerScript : MonoBehaviour
         myData.positionZ = playerScript.transform.position.z;
         myData.playerHealth = resourceManagerScript.GetPlayerHealth();
         myData.playerTorchCounter = resourceManagerScript.GetTorchCount();
-
+        myData.saveZoneIndex = spawnManagerScript.GetActiveSafeZoneIndex();
+        
         // this saving I have from tutorial!
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         FileStream file;
@@ -69,5 +84,6 @@ public class SaveManagerScript : MonoBehaviour
     public float positionZ;
     public int playerHealth;
     public int playerTorchCounter;
-    
+    public int saveZoneIndex;
+
 }

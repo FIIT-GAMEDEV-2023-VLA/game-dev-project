@@ -27,7 +27,9 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // here will be all buttons and text we use in main menu scene (which we will interact with)
     [SerializeField] Button[] buttonsInMenu;
     //[SerializeField] Text[] textsInMenu;
-    [SerializeField] Image[] imagesInMenu;               // n
+    [SerializeField] Image[] imagesInMenu;
+
+    private GameObject saveMessagePass;
 
     //public Color colorBeforeHover;
     //public Text hoveredText;
@@ -162,7 +164,14 @@ public class MainMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     public void LoadSavedGameScene()  // just function to change scene
     {
-        sceneManager.LoadLastSavedScene();
+        saveMessagePass = GameObject.Find("SaveMessagePassBohuzial");
+        if (saveMessagePass)
+        {
+            SaveMessagePassScript saveMessagePassScript = saveMessagePass.GetComponent<SaveMessagePassScript>();
+            saveMessagePassScript.SetContinuedFlag(true);
+        }
+        SceneManager.LoadScene(1);
+        //sceneManager.LoadLastSavedScene();
     }
     
     public void LoadSettingseScene()  // just function to change scene

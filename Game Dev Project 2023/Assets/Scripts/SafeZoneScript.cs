@@ -52,6 +52,11 @@ public class SafeZoneScript : MonoBehaviour
         visited = false;
     }
 
+    public void SetVisitedFlag(bool flag)
+    {
+        visited = flag;
+    }
+
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
