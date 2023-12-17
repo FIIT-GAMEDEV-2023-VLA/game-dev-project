@@ -28,14 +28,6 @@ public class ResourceManagerScript : MonoBehaviour
     {   
         playerTorchCounter = playerStartingTorchCount;
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
-        int idScene = SceneManager.GetActiveScene().buildIndex;  // if current scene is saved game
-        if (idScene==2)
-        {
-            SaveManagerScript saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManagerScript>();
-            Data data = saveManager.LoadMyStuffPlease();
-            playerHealth = data.playerHealth;
-            playerTorchCounter = data.playerTorchCounter;
-        }
         
         GameObject hiddenObjects = GameObject.FindGameObjectWithTag("Hidden");
         gameOverScreen = hiddenObjects.transform.Find("GameOverScreen")?.gameObject;
@@ -45,6 +37,13 @@ public class ResourceManagerScript : MonoBehaviour
         }
     }
 
+    public void LoadSavedResources(Data savedData)
+    {
+        playerHealth = savedData.playerHealth;
+        playerTorchCounter = savedData.playerTorchCounter;
+        Debug.Log("Resource Manger Loaded Saved Game Resources!");
+    }
+    
     // neskôr v player script budeme overovať (pri kolizii), či má postava ešte životy, a keď stratí 3, tak sa z daného scriptu zavolá game over screen
     // aj player life status bude až v player scripte (status alive = true na false sa zmení iba ak bude mať nula životov)
     
