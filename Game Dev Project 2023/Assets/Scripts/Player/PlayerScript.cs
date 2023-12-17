@@ -37,7 +37,6 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
-        // TODO: replace the save manager spawn functionality - do it in the spawn manager script 
         isAlive = true;
         isInputLocked = false;
         isFacingRight = true;
@@ -54,6 +53,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.z != 0)
+        {
+            // LAZY BUG FIX - SUE ME!!!
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        } 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         if (!isInputLocked && isAlive)
