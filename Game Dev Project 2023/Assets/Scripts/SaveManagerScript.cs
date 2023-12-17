@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class SaveManagerScript : MonoBehaviour
 {
-    
-    public PlayerScript playerScript;
-    public ResourceManagerScript resourceManagerScript;
-    public SpawnManagerScript spawnManagerScript;
+
+    private GameObject player;
+    private PlayerScript playerScript;
+    private ResourceManagerScript resourceManagerScript;
+    private SpawnManagerScript spawnManagerScript;
     
     private int idScene;
     
@@ -20,8 +21,9 @@ public class SaveManagerScript : MonoBehaviour
         idScene = SceneManager.GetActiveScene().buildIndex;
         
         if (idScene != 0 & idScene != 3)  // if we are not in menu
-        {   
-            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerScript = player.GetComponent<PlayerScript>(); 
             resourceManagerScript = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceManagerScript>();
             spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();
             GameObject saveMessageGameObject = GameObject.Find("SaveMessagePassBohuzial");
@@ -33,7 +35,7 @@ public class SaveManagerScript : MonoBehaviour
                     Data savedData = LoadMyStuffPlease();
                     resourceManagerScript.LoadSavedResources(savedData);
                     spawnManagerScript.LoadSavedGameSpawn(savedData);
-                    
+                    Destroy(saveMessageGameObject);
                 }
             }
         }
@@ -44,9 +46,9 @@ public class SaveManagerScript : MonoBehaviour
     {
         
         Data myData = new Data();  // just wrapped data for better saving
-        myData.positionX = playerScript.transform.position.x;
-        myData.positionY = playerScript.transform.position.y;
-        myData.positionZ = playerScript.transform.position.z;
+        myData.positionX = player.transform.position.x;
+        myData.positionY = player.transform.position.y;
+        myData.positionZ = player.transform.position.z;
         myData.playerHealth = resourceManagerScript.GetPlayerHealth();
         myData.playerTorchCounter = resourceManagerScript.GetTorchCount();
         myData.saveZoneIndex = spawnManagerScript.GetActiveSafeZoneIndex();

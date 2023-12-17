@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1990769090196791808, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: delayBetweenChangedScene
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1990769090196791808, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: textsInMenu.Array.data[0]
@@ -1434,7 +1434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864898268076090006, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: delayBetweenChangedScene
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3864898268076090006, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: textsInMenu.Array.data[0]
@@ -1604,6 +1604,10 @@ PrefabInstance:
       propertyPath: buttonBehavior
       value: 
       objectReference: {fileID: 857083176}
+    - target: {fileID: 5656346451306759926, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
+      propertyPath: delayBetweenChangedScene
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6478760977038094975, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1746,7 +1750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8878784009201420163, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: delayBetweenChangedScene
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8878784009201420163, guid: fcf2eed018cc55743b5326e46548868a, type: 3}
       propertyPath: textsInMenu.Array.data[0]

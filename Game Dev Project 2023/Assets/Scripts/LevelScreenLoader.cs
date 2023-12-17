@@ -15,11 +15,22 @@ public class LevelScreenLoader : MonoBehaviour
 
     //public Animator crossSceneTransition;
     public Animator beginningStoryTransition;
+
+    private bool playAnim = true;
     
     // Start is called before the first frame update
     void Start()
     {
         idScene = SceneManager.GetActiveScene().buildIndex;
+        GameObject saveMessageGameObject = GameObject.Find("SaveMessagePassBohuzial");
+        if (saveMessageGameObject)
+        {
+            SaveMessagePassScript saveMessagePassScript = saveMessageGameObject.GetComponent<SaveMessagePassScript>();
+            if (saveMessagePassScript.IsContinued())
+            {
+                playAnim = false;
+            }
+        }
         
     }
 
@@ -29,7 +40,7 @@ public class LevelScreenLoader : MonoBehaviour
         int oldId = idScene;
         idScene = SceneManager.GetActiveScene().buildIndex;  // I want to change songs between scenes
 
-        if (idScene != oldId)
+        if (idScene != oldId && playAnim)
         {
             if (idScene == 1 | idScene == 2)
             {
