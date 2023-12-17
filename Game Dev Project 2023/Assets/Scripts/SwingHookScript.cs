@@ -6,6 +6,7 @@ using UnityEngine;
 public class SwingHookScript : MonoBehaviour
 {
     [SerializeField] private GameObject chainPrefab;
+    [SerializeField] private DistanceJoint2D distanceJoint2D;
     private GameObject player;
     private PlayerScript playerScript;
     private Rigidbody2D playerRigidBody2D;
@@ -21,13 +22,14 @@ public class SwingHookScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        throw new NotImplementedException();
         // TODO: set player to canAttachToHook
+        AttachPlayer();
     }
 
     public void AttachPlayer()
     {
-        
+        distanceJoint2D.connectedBody = playerRigidBody2D;
+        distanceJoint2D.connectedAnchor = player.transform.position;
     }
 
     public void UnattachPlayer()
