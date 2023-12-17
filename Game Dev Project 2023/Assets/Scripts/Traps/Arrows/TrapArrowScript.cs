@@ -17,6 +17,16 @@ public class TrapArrowScript : MonoBehaviour
         transform.position += new Vector3( directionX * moveSpeed * Time.deltaTime, 0, 0 );
     }
 
+    public void SetDirection(float dir)
+    {
+        directionX = dir;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
