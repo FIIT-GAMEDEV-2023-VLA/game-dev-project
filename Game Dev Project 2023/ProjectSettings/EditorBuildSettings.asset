@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/NewMenu.unity
     guid: 1620d6b0de88663489f23029db61a620
   - enabled: 1
-    path: Assets/Scenes/LeoTorchPathingScene.unity
-    guid: 8bcd0590c402e7c45bf55013405fa627
+    path: Assets/Scenes/ViktorTest.unity
+    guid: 6df3aa0dd98267c4ea201cb2a7596344
   - enabled: 1
     path: Assets/Scenes/SavedGame.unity
     guid: 47d7ccc9fa3e742439efb6bb4dbacfa2

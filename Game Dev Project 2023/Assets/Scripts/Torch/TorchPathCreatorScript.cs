@@ -32,7 +32,7 @@ public class TorchPathCreatorScript : MonoBehaviour
     
     void OnDrawGizmos()
     {
-        if (pathContainer.transform.childCount >0)
+        if (pathContainer.transform.childCount > 0)
         {
             foreach (Transform child in pathContainer.transform)
             {
