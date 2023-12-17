@@ -32,23 +32,19 @@ public class TorchPathCreatorScript : MonoBehaviour
     
     void OnDrawGizmos()
     {
-        if (transform.hasChanged)
+        if (pathContainer.transform.childCount > 0)
         {
-            if (pathContainer.transform.childCount > 0)
+            foreach (Transform child in pathContainer.transform)
             {
-                foreach (Transform child in pathContainer.transform)
+                if (child.GetSiblingIndex() < pathContainer.transform.childCount - 1)
                 {
-                    if (child.GetSiblingIndex() < pathContainer.transform.childCount - 1)
-                    {
-                        Transform nextChild = pathContainer.transform.GetChild(child.GetSiblingIndex() + 1);
-                        Color prevColor = Gizmos.color;
-                        Gizmos.color = Color.blue;
-                        Gizmos.DrawLine(child.position, nextChild.position);
-                        Gizmos.color = prevColor;
-                    }
+                    Transform nextChild = pathContainer.transform.GetChild(child.GetSiblingIndex() + 1);
+                    Color prevColor = Gizmos.color;
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(child.position, nextChild.position);
+                    Gizmos.color = prevColor;
                 }
             }
-            transform.hasChanged = false;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -37,6 +38,7 @@ public class SceneManagerScript : MonoBehaviour
             winScreen = hiddenObjects.transform.Find("WinScreen")?.gameObject;
         }
     }
+    
 
     void Update()
     {
