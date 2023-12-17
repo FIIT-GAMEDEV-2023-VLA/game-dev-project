@@ -21,6 +21,8 @@ TagManager:
   - PauseMenu
   - ButtonManagerPauseMenu
   - Hidden
+  - StaticSpikes
+  - DynamicSpikes
   layers:
   - Default
   - TransparentFX
