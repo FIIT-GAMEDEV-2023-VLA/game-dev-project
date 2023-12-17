@@ -1,5 +1,4 @@
-
-using System;
+// Author: Leonard Puškáč
 using UnityEngine;
 
 #if UNITY_EDITOR
