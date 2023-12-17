@@ -71,7 +71,7 @@ public class PauseMenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
             
         if (PlayerPrefs.HasKey("sound"))
         {
-            AudioListener.volume = PlayerPrefs.GetFloat("sound");
+            AudioListener.volume = PlayerPrefs.GetFloat("sound")*0.6f;
         }
         else
         {
