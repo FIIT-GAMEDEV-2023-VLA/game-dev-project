@@ -18,7 +18,7 @@ public class SceneManagerScript : MonoBehaviour
     public GameObject HiddenPauseMenu;
     public GameObject HiddenSettingsMenu;
     public GameObject hiddenObjects;
-    
+    public GameObject winScreen;
 
     void Start()
     {
@@ -34,6 +34,7 @@ public class SceneManagerScript : MonoBehaviour
             hiddenObjects = GameObject.FindGameObjectWithTag("Hidden");
             HiddenPauseMenu = hiddenObjects.transform.Find("PauseMenuObject")?.gameObject; // I tried to find object which was not active, but this is working
             HiddenSettingsMenu = hiddenObjects.transform.Find("GameSettingsPauseMenu")?.gameObject;
+            winScreen = hiddenObjects.transform.Find("WinScreen")?.gameObject;
         }
     }
 
@@ -42,7 +43,7 @@ public class SceneManagerScript : MonoBehaviour
 
         if (idScene != 0 & idScene !=3)  // if we are not in menu and settings menu
         {
-            if (Input.GetKeyDown(KeyCode.Escape) & (HiddenPauseMenu.activeSelf==false))  // escape for returning to menu (all will be saved meanwhile)
+            if (Input.GetKeyDown(KeyCode.Escape) && (HiddenPauseMenu.activeSelf==false) && winScreen.activeSelf==false)  // escape for returning to menu (all will be saved meanwhile)
             {
                 HiddenPauseMenu.SetActive(true);
                 
