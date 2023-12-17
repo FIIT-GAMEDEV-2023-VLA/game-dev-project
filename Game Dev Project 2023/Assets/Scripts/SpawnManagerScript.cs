@@ -24,6 +24,20 @@ public class SpawnManagerScript : MonoBehaviour
         }
     }
 
+    public void LoadSavedGameSpawn(Data data)
+    {
+        SetActiveSafeZone(safeZones[data.saveZoneIndex]);
+        SafeZoneScript safeZoneScript = activeSafeZone.GetComponent<SafeZoneScript>();
+        if (safeZoneScript)
+        {
+            safeZoneScript.SetVisitedFlag(true);
+            Debug.Log("Setting Saved Safe Zone to Visited!");
+        }
+
+        playerScript.Spawn(new Vector3(data.positionX, data.positionY, data.positionZ));
+        Debug.Log("SpawnManager Loaded Saved Game Data!");
+    }
+
     private GameObject FindStartingSafeZone()
     {
         GameObject newStartingSafeZone = null;
@@ -35,6 +49,20 @@ public class SpawnManagerScript : MonoBehaviour
             }
         }
         return newStartingSafeZone;
+    }
+
+    public int GetActiveSafeZoneIndex()
+    {
+        int index = 0;
+        for (int i = 0; i < safeZones.Length; i++)
+        {
+            if (safeZones[i] == activeSafeZone)
+            {
+                index = i;
+            }
+        }
+        Debug.Log("Active Safe Zone Index: " + index);
+        return index;
     }
 
     public void SpawnPlayer()
