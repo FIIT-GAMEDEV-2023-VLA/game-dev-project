@@ -71,5 +71,13 @@ Game Dev Project 2023/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 Game Dev Project 2023/[Aa]ssets/[Ss]treamingAssets/aa.meta
 Game Dev Project 2023/[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Compiled files
+Game Dev Project 2023_Data
+Game Dev Project 2023_BurstDebugInformation_DoNotShip
+Game Dev Project 2023.exe
+MonoBleedingEdge
+UnityCrashHandler64.exe
+UnityPlayer.dll
+
 # Deployment pipelines
 .github
