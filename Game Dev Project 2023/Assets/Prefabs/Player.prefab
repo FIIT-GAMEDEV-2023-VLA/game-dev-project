@@ -431,6 +431,7 @@ MonoBehaviour:
   animLight: {fileID: 5445448809765479259}
   spriteRend: {fileID: 6776941912337763460}
   torchSpawnZoneTag: TorchSpawnZone
+  doorwayButtonZoneTag: DoorwayButtonZone
 --- !u!70 &4592426832395594493
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

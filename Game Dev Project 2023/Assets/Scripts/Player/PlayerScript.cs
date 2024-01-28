@@ -21,10 +21,12 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator animLight;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private string torchSpawnZoneTag;
+    [SerializeField] private string doorwayButtonZoneTag;
 
     private ResourceManagerScript resourceManagerScript;
     // Reference to the active torch spawn zone path 
     private GameObject torchSpawnZonePath;
+    private GameObject doorwayButton;
     // Input Axes
     private float horizontal;
     private float vertical;
@@ -33,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     private bool isFacingRight;
     private bool isAlive;
     private bool canThrowATorch;
+    private bool canOpenDoor;
     private enum AnimationState { Idle, Running, Jumping, Falling, Sliding, CrouchingIdle, CrouchingRunning};
     
     void Start()
@@ -42,6 +45,8 @@ public class PlayerScript : MonoBehaviour
         isFacingRight = true;
         canThrowATorch = false;
         torchSpawnZonePath = null;
+        canOpenDoor = false;
+        doorwayButton = null;
 
         capsuleCollider2DOffset = capsuleCollider2D.offset;
         capsuleCollider2DSize = capsuleCollider2D.size;
@@ -82,6 +87,11 @@ public class PlayerScript : MonoBehaviour
                 torchPathScript.SpawnTorch(transform.position);
                 resourceManagerScript.RemoveTorch(1);
             }
+
+            if (Input.GetKeyDown(KeyCode.E) && canOpenDoor && doorwayButton)
+            {   
+                doorwayButton.GetComponent<DoorwayButtonScript>().Open();
+            }
         }
         if (isAlive)
         {
@@ -113,6 +123,14 @@ public class PlayerScript : MonoBehaviour
             torchSpawnZonePath = other.gameObject.transform.parent.gameObject;
             canThrowATorch = true;
         }
+
+        if (other.gameObject.CompareTag(doorwayButtonZoneTag))
+        {
+            Debug.Log("Entered Button Zone");
+            doorwayButton = other.gameObject;
+            Debug.Log(doorwayButton);
+            canOpenDoor = true;
+        }
     }
     
     private void OnTriggerExit2D(Collider2D other)
@@ -121,6 +139,13 @@ public class PlayerScript : MonoBehaviour
         {
             canThrowATorch = false;
             torchSpawnZonePath = null;
+        }
+
+        if (other.gameObject.CompareTag(doorwayButtonZoneTag))
+        {
+            Debug.Log("Exited Button Zone");
+            canOpenDoor = false;
+            doorwayButton = null;
         }
     }
     

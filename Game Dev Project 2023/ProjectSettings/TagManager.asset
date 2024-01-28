@@ -23,6 +23,7 @@ TagManager:
   - Hidden
   - StaticSpikes
   - DynamicSpikes
+  - DoorwayButtonZone
   layers:
   - Default
   - TransparentFX
